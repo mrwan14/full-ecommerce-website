@@ -1,0 +1,20 @@
+form {
+  width: 340px;
+  height: 40px;
+  padding: auto;
+}
+form ::placeholder {
+  /* Title/12PX Regular */
+
+  font-family: "Poppins", "FontAwesome";
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  /* identical to box height, or 150% */
+}
+.icons {
+  font-size: 30px;
+  margin-left: 40px;
+  align-items: center;
+  display: flex;
+}

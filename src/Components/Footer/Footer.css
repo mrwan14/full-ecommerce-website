@@ -1,0 +1,44 @@
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+.email-input {
+  height: 48px;
+  width: 217px;
+  border-radius: 4px;
+}
+.btn {
+  border: white solid 1px;
+  color: white;
+  width: 170px;
+  height: 38px;
+}
+.btn .icon {
+  font-size: 25px;
+  margin-top: -8px;
+  margin-left: 5px;
+}
+.btn p {
+  font-size: 10px;
+  font-weight: lighter;
+  margin-top: -10px;
+  margin-left: -55px;
+}
+.btn h6 {
+  font-size: 18px;
+  margin-top: -20px;
+  margin-left: 5px;
+}
+.for-position {
+  margin-right: -50px;
+}
+.social
+{
+    margin-top: 20px;
+    margin-left: 5px;
+    width: 75%;
+    justify-content: space-between;
+    font-size: 20px;
+}
