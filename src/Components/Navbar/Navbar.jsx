@@ -7,8 +7,8 @@ import "./Navbar.css";
 export default function Navbar() {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg bg-white  ">
-        <div className="container-fluid   d-flex justify-content-between ">
+      <nav class="navbar navbar-expand-lg bg-white  border-bottom ">
+        <div className="container   d-flex justify-content-between ">
           <div>
             <a class="navbar-brand" href="#">
               Exclusvie

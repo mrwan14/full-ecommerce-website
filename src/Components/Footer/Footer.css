@@ -34,11 +34,40 @@ a {
 .for-position {
   margin-right: -50px;
 }
-.social
-{
-    margin-top: 20px;
-    margin-left: 5px;
-    width: 75%;
-    justify-content: space-between;
-    font-size: 20px;
+.social {
+  margin-top: 20px;
+  margin-left: 5px;
+  width: 75%;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+@media (min-width: 576px) {
+  .container-fluid {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-fluid {
+    width: 850px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container-fluid {
+    width: 1000px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-fluid {
+    width: 1300px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container-fluid {
+    width: 1400px;
+  }
 }

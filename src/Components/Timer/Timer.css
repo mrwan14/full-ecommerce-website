@@ -1,0 +1,22 @@
+.for-character {
+  /* Title/12PX Medium */
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  /* identical to box height, or 150% */
+}
+.for-num {
+  /* Heading/32PX Bold */
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 30px;
+  /* or 94% */
+
+  letter-spacing: 0.04em;
+}

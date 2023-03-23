@@ -12,7 +12,7 @@ export default function Footer() {
     <div>
       <div class="blockcode">
         <footer class="page-footer shadow  bg-black">
-          <div class="d-flex flex-column mx-auto py-5 container-fluid">
+          <div class="d-flex flex-column mx-auto py-5 container">
             <div class="d-flex flex-wrap justify-content-between text-white">
               <div class="align-self-center">
                 {" "}

@@ -10,7 +10,7 @@ export default function TopHeader() {
   return (
     <React.Fragment>
       <div className="bg-black text-white   ">
-        <div className="container-fluid   d-flex justify-content-between ">
+        <div className="container  d-flex justify-content-between ">
           <div></div>
           <div className="top-header">
             <div>
