@@ -27,7 +27,7 @@ export default function Timer() {
     <div>
       <div className="timer">
         <div className="d-flex">
-          <div className="me-2">
+          <div className="me-2 ">
             {" "}
             <p className="for-character mb-0">
               Days <br />
