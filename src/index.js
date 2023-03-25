@@ -6,11 +6,14 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import DataContextProvider from "./Components/Context/DataContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <DataContextProvider>
     <App />
+    </DataContextProvider>
   </React.StrictMode>
 );
 

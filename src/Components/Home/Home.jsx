@@ -11,31 +11,13 @@ import { BsHeadset } from "react-icons/bs";
 import { BsShieldCheck } from "react-icons/bs";
 import "./Home.css";
 import Timer from "../Timer/Timer";
-import {
-  getData,
-  getCatogries,
-  getBestSellingData,
-  getOurProducts,
-} from "../../api";
-import StarRating from "../StarRating/StarRating";
-export default function Home(props) {
-  const [data, setData] = useState(null);
-  const [catogries, setCatogries] = useState(null);
-  const [bestSellingData, setBestSellingData] = useState(null);
-  const [ourProudcts, setOurProudcts] = useState(null);
 
-  useEffect(() => {
-    // Immediately Invoked Function
-    (async () => {
-      // Get items from storage and sync with state
-      // Get data from API
-      setData(await getData());
-      setCatogries(await getCatogries());
-      setBestSellingData(await getBestSellingData());
-      setOurProudcts(await getOurProducts());
-    })();
-  }, []);
-  const [newRating, setNewRating] = useState(0);
+import StarRating from "../StarRating/StarRating";
+import { DataContext } from "../Context/DataContext";
+export default function Home(props) {
+
+  let {data ,catogries ,bestSellingData ,ourProudcts} =useContext(DataContext)
+
 
   return (
     <div>
@@ -753,8 +735,7 @@ export default function Home(props) {
               <div className="service-icon ">
                 <div className="for-icon">
                   {" "}
-                  <BsHeadset className="text-white fs-2"/>
-
+                  <BsHeadset className="text-white fs-2" />
                 </div>
               </div>
               <dov className="service-desc">
@@ -766,7 +747,7 @@ export default function Home(props) {
               <div className="service-icon ">
                 <div className="for-icon">
                   {" "}
-<BsShieldCheck className="text-white fs-2"/>
+                  <BsShieldCheck className="text-white fs-2" />
                 </div>
               </div>
               <dov className="service-desc">
