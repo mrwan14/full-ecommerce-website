@@ -34,6 +34,7 @@
   background-color: rgba(245, 245, 245, 1);
   height: 300px;
   position: relative;
+  overflow: hidden;
 }
 .add-to-cart {
   position: absolute;
@@ -53,10 +54,11 @@
   display: flex;
 }
 .img-container img {
-  width: 50%;
+  width: 55%;
+  margin-top: 20px;
 }
 .chair {
-  margin-top: -50px;
+  margin-top: -60px;
 }
 .mins {
   width: 20%;
@@ -156,4 +158,104 @@
 .Buy-Now:hover {
   background-color: rgba(219, 68, 68, 1);
   color: white;
+}
+.new-product {
+  width: 50px;
+  height: 25px;
+  border-radius: 4px;
+  margin-left: -24px;
+  margin-top: -26px;
+  background-color: rgba(0, 255, 102, 1);
+  color: white;
+}
+
+/* The container */
+.ratio {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.ratio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #ff0d0d;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.ratio:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.ratio input:checked ~ .checkmark {
+  border: black 3px solid;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.ratio input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.women-desc {
+  top: 130px;
+  left: 24px;
+}
+.speaker-desc {
+  bottom: 20px;
+  left: 24px;
+}
+.speaker-img {
+  height: 280px;
+}
+.service-icon {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#D9D9D9;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 30px;
+
+
+}
+.for-icon
+{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+
 }

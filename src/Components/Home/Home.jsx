@@ -7,9 +7,16 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
+import { BsHeadset } from "react-icons/bs";
+import { BsShieldCheck } from "react-icons/bs";
 import "./Home.css";
 import Timer from "../Timer/Timer";
-import { getData, getCatogries, getBestSellingData ,getOurProducts} from "../../api";
+import {
+  getData,
+  getCatogries,
+  getBestSellingData,
+  getOurProducts,
+} from "../../api";
 import StarRating from "../StarRating/StarRating";
 export default function Home(props) {
   const [data, setData] = useState(null);
@@ -559,85 +566,213 @@ export default function Home(props) {
             />
           </div>
         </div>
-        <div className="our-products-section mt-5">
-          <div className="">
-            <div className="d-flex">
-              {" "}
-              <div className="brdr"></div>
-              <h6 className="ms-3 mt-2 text-danger fw-bold">Our Products</h6>
-            </div>{" "}
-            <div className=" d-flex  align-items-center mt-3">
-              <h3 className="fw-bold  col-md-4 ">Explore Our Products</h3>
-              <div className=" col-md-7 offset-1  d-flex justify-content-between">
-                <div></div>
-                <div className="d-flex ">
-                  <div className="arrow d-flex justify-content-center align-items-center me-2">
-                    <AiOutlineArrowLeft className="fs-5" />{" "}
-                  </div>
-                  <div className="arrow d-flex justify-content-center align-items-center">
-                    {" "}
-                    <AiOutlineArrowRight className="fs-5" />
-                  </div>
+        <div className="our-products-section my-5">
+          <div className="d-flex">
+            {" "}
+            <div className="brdr"></div>
+            <h6 className="ms-3 mt-2 text-danger fw-bold">Our Products</h6>
+          </div>{" "}
+          <div className=" d-flex  align-items-center mt-3">
+            <h3 className="fw-bold  col-md-4 ">Explore Our Products</h3>
+            <div className=" col-md-7 offset-1  d-flex justify-content-between">
+              <div></div>
+              <div className="d-flex ">
+                <div className="arrow d-flex justify-content-center align-items-center me-2">
+                  <AiOutlineArrowLeft className="fs-5" />{" "}
                 </div>
-              </div>{" "}
-            </div>
-            {data == null ? (
-              <div>loading</div>
-            ) : (
-              <div>
-                {" "}
-                <div className="row mt-5">
-                  {ourProudcts.map((product) => (
-                    <>
-                      <div className="col-md-3">
-                        <div className="product-container">
-                          {" "}
-                          <div className={`img-container`}>
-                            <div className="icons d-flex justify-content-between">
-                              <div className=" "></div>{" "}
-                              <div className="right-icons ">
-                                <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
-                                <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
-                              </div>
-                            </div>
-                            <div
-                              className={`${
-                                product.isTallImage ? "chair" : "none"
-                              } `}
-                            >
+                <div className="arrow d-flex justify-content-center align-items-center">
+                  {" "}
+                  <AiOutlineArrowRight className="fs-5" />
+                </div>
+              </div>
+            </div>{" "}
+          </div>
+          {data == null ? (
+            <div>loading</div>
+          ) : (
+            <div>
+              {" "}
+              <div className="row mt-5">
+                {ourProudcts.map((product) => (
+                  <>
+                    <div className="col-md-3">
+                      <div className="product-container">
+                        {" "}
+                        <div className={`img-container`}>
+                          <div className="icons d-flex justify-content-between">
+                            <div className="">
                               {" "}
-                              <img src={product.ImgSrc} alt="" />
+                              {product.isNew ? (
+                                <div className="new-product ">
+                                  <p className="mt-1">New</p>
+                                </div>
+                              ) : (
+                                <div></div>
+                              )}
                             </div>
-                            <div className="add-to-cart">Add To Cart</div>
+                            <div className="right-icons ">
+                              <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
+                              <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
+                            </div>
                           </div>
-                          <div className="product-desc m-3">
-                            <h5>{product.Product_Name}</h5>
-                            <div className="price d-flex">
-                              <p className="text-danger me-3">
-                                ${product.Price}{" "}
-                              </p>
-                              <p className="text-muted  text-decoration-line-through">
-                                $
-                                {product.Price +
-                                  Math.floor(Math.random() * 200 + 100)}{" "}
-                              </p>
-                            </div>{" "}
+                          <div
+                            className={`${
+                              product.isTallImage ? "chair" : "none"
+                            } `}
+                          >
+                            {" "}
+                            <img src={product.ImgSrc} alt="" />
+                          </div>
+                          <div className="add-to-cart">Add To Cart</div>
+                        </div>
+                        <div className="product-desc m-3">
+                          <h5>{product.Product_Name}</h5>
+                          <div className="price d-flex align-items-center">
+                            <p className="text-danger me-2 mt-2">
+                              ${product.Price}{" "}
+                            </p>
                             <div className="star-rating d-flex  ">
                               <StarRating />{" "}
                               <p className="mt-2 ms-3">
                                 ({Math.floor(Math.random() * 100 + 10)})
                               </p>
                             </div>
-                          </div>
+                          </div>{" "}
                         </div>
                       </div>
-                    </>
-                  ))}
+                    </div>
+                  </>
+                ))}
+              </div>
+            </div>
+          )}
+          <div className=" view-all-details d-flex justify-content-center  ">
+            <button className="btn p-2">View All Products</button>
+          </div>
+        </div>
+        <div className="new-arrival-section my-5">
+          <div className="d-flex">
+            {" "}
+            <div className="brdr"></div>
+            <h6 className="ms-3 mt-2 text-danger fw-bold">Featured</h6>
+          </div>{" "}
+          <div className=" d-flex  align-items-center mt-3">
+            <h3 className="fw-bold  col-md-4 ">New Arrival</h3>
+          </div>
+          <div className="row">
+            <div className="col-md-6  bg-black d-flex justify-content-center  position-relative">
+              <div className=" mt-5">
+                <img
+                  src={require("../../images/ps5.png")}
+                  alt=""
+                  className="mt-5"
+                />
+              </div>
+              <div className="ps5-desc position-absolute text-white  bottom-0 mb-5 start-0 ms-5">
+                <h2>PlayStation 5</h2>
+                <p className="fw-1">
+                  Black and White version of the PS5 <br /> coming out on sale.
+                </p>
+                <button className=" btn border-0  bg-transparent text-white border-bottom  border-light">
+                  Shop Now
+                </button>
+              </div>
+            </div>
+            <div className="col-md-6 ">
+              <div className="women bg-black d-flex text-white position-relative justify-content-between">
+                <div></div>
+                <div className="women-desc position-absolute  ">
+                  <h2>Women’s Collections</h2>
+                  <p>
+                    Featured woman collections that <br /> give you another
+                    vibe.
+                  </p>
+                  <button className=" btn border-0  bg-transparent text-white border-bottom  border-light">
+                    Shop Now
+                  </button>
+                </div>
+                <div className="women-img ">
+                  <img src={require("../../images/women.png")} alt="" />
                 </div>
               </div>
-            )}
-            <div className=" view-all-details d-flex justify-content-center  ">
-              <button className="btn p-2">View All Products</button>
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="speaker-img bg-black d-flex justify-content-center mt-5 position-relative">
+                    <div className="speaker-desc position-absolute text-white">
+                      <h3 className="mb-0">Speakers</h3>
+                      <p className="mb-0">Amazon wireless speakers</p>
+                      <button className=" btn border-0  bg-transparent text-white border-bottom  border-light">
+                        Shop Now
+                      </button>
+                    </div>
+                    <img
+                      src={require("../../images/speakers.png")}
+                      alt=""
+                      className="my-5"
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  {" "}
+                  <div className="speaker-img bg-black d-flex justify-content-center mt-5 position-relative ">
+                    <div className="speaker-desc position-absolute text-white ">
+                      <h3 className="mb-0">Perfume</h3>
+                      <p className="mb-0">GUCCI INTENSE OUD EDP</p>
+                      <button className=" btn border-0  bg-transparent text-white border-bottom  border-light ">
+                        Shop Now
+                      </button>
+                    </div>
+                    <img
+                      src={require("../../images/perfum.png")}
+                      alt=""
+                      className="my-5  "
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-4 text-center mt-5">
+              <div className="service-icon ">
+                <div className="for-icon">
+                  {" "}
+                  <img
+                    src={require("../../images/icon-delivery.png")}
+                    alt=""
+                    className=" rounded-circle "
+                  />
+                </div>
+              </div>
+              <dov className="service-desc">
+                <h4 className="fw-bolder">FREE AND FAST DELIVERY</h4>
+                <p>Free delivery for all orders over $140</p>
+              </dov>
+            </div>
+            <div className="col-md-4 text-center mt-5">
+              <div className="service-icon ">
+                <div className="for-icon">
+                  {" "}
+                  <BsHeadset className="text-white fs-2"/>
+
+                </div>
+              </div>
+              <dov className="service-desc">
+                <h4 className="fw-bolder">24/7 CUSTOMER SERVICE</h4>
+                <p>Friendly 24/7 customer support</p>
+              </dov>
+            </div>
+            <div className="col-md-4 text-center mt-5">
+              <div className="service-icon ">
+                <div className="for-icon">
+                  {" "}
+<BsShieldCheck className="text-white fs-2"/>
+                </div>
+              </div>
+              <dov className="service-desc">
+                <h4 className="fw-bolder">MONEY BACK GUARANTEE</h4>
+                <p>We reurn money within 30 days</p>
+              </dov>
             </div>
           </div>
         </div>

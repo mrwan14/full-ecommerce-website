@@ -127,6 +127,10 @@ export const getOurProducts = async () => {
           Product_Model: "Serise 5 SA",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/dryFood.png"),
+          isTallImage: true,
+          
+
+
         },
         {
           id: 2,
@@ -134,6 +138,8 @@ export const getOurProducts = async () => {
           Product_Model: "Light Grey",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/camera.png"),
+          isTallImage: true,
+
         },
         {
           id: 3,
@@ -148,7 +154,6 @@ export const getOurProducts = async () => {
           Product_Model: "Subway Blue",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/shampo.png"),
-          isTallImage: true,
         },
         {
           id: 5,
@@ -156,7 +161,7 @@ export const getOurProducts = async () => {
           Product_Model: "Subway Blue",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/kidsCar.png"),
-          isTallImage: true,
+          isNew:true,
         },
         {
           id: 6,
@@ -164,7 +169,6 @@ export const getOurProducts = async () => {
           Product_Model: "Subway Blue",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/stars.png"),
-          isTallImage: true,
         },
         {
           id: 7,
@@ -172,7 +176,7 @@ export const getOurProducts = async () => {
           Product_Model: "Subway Blue",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/controller2.png"),
-          isTallImage: true,
+          isNew:true,
         },
         {
           id: 8,
@@ -180,7 +184,6 @@ export const getOurProducts = async () => {
           Product_Model: "Subway Blue",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/jacket.png"),
-          isTallImage: true,
         },
         
       ]);
