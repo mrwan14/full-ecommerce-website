@@ -15,9 +15,8 @@ import Timer from "../Timer/Timer";
 import StarRating from "../StarRating/StarRating";
 import { DataContext } from "../Context/DataContext";
 export default function Home(props) {
-
-  let {data ,catogries ,bestSellingData ,ourProudcts} =useContext(DataContext)
-
+  let { data, catogries, bestSellingData, ourProudcts } =
+    useContext(DataContext);
 
   return (
     <div>
@@ -320,9 +319,8 @@ export default function Home(props) {
                     <div>...Loading Data</div>
                   ) : (
                     <div className="row">
-                      {" "}
                       {data.map((product) => (
-                        <div className="col-md-2">
+                        <div className="col-md-2  col-sm-3">
                           <div className="product-container">
                             {" "}
                             <div className={`img-container`}>
@@ -405,7 +403,7 @@ export default function Home(props) {
                 {" "}
                 <div className="row">
                   {catogries.map((catogry) => (
-                    <div className="col-md-2">
+                    <div className="col-md-2  ">
                       <div className="catogry-container">
                         <h1 className="mt-4">{catogry.catogriesIcon}</h1>
                         <h6> {catogry.catogriesName}</h6>{" "}
@@ -504,16 +502,17 @@ export default function Home(props) {
                     {Math.floor(Math.random() * 24 + 0)}{" "}
                   </span>
                   <br />
-                  Hours
+                  <span className="date">Hours</span>
+                  
                 </p>
               </div>
               <div className="circle ">
                 <p className="mt-2">
-                  <span className="fw-bolder fs-5 ">
+                  <span className="fw-bolder fs-5  ">
                     {Math.floor(Math.random() * 30 + 0)}{" "}
                   </span>
                   <br />
-                  Days
+                  <span className="date"> Days</span>{" "}
                 </p>
               </div>
               <div className="circle ">
@@ -522,7 +521,7 @@ export default function Home(props) {
                     {Math.floor(Math.random() * 60 + 0)}{" "}
                   </span>
                   <br />
-                  Minutes
+                  <span className="date">mins</span>
                 </p>
               </div>
               <div className="circle ">
@@ -531,7 +530,7 @@ export default function Home(props) {
                     {Math.floor(Math.random() * 60 + 0)}{" "}
                   </span>
                   <br />
-                  Seconds
+                  <span className="date ms-1 ">sec</span>
                 </p>
               </div>
             </div>
@@ -613,7 +612,7 @@ export default function Home(props) {
                             <p className="text-danger me-2 mt-2">
                               ${product.Price}{" "}
                             </p>
-                            <div className="star-rating d-flex  ">
+                            <div className="star-rating d-flex   ">
                               <StarRating />{" "}
                               <p className="mt-2 ms-3">
                                 ({Math.floor(Math.random() * 100 + 10)})
@@ -642,7 +641,7 @@ export default function Home(props) {
             <h3 className="fw-bold  col-md-4 ">New Arrival</h3>
           </div>
           <div className="row">
-            <div className="col-md-6  bg-black d-flex justify-content-center  position-relative">
+            <div className="col-md-6 ps5-ad  bg-black d-flex justify-content-center  position-relative">
               <div className=" mt-5">
                 <img
                   src={require("../../images/ps5.png")}
