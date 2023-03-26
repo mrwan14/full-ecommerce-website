@@ -32,7 +32,7 @@ p a {
   .black-bar .dropdown {
     position: absolute;
     top: 32px;
-    left:345px
+    left:375px
   }
 }
 @media (min-width: 576px) and (max-width: 768px) {
