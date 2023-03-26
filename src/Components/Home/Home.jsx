@@ -21,54 +21,55 @@ export default function Home(props) {
   return (
     <div>
       <div className="home container">
+
         <div className="main-ad ">
           <div className="row">
             <div className="col-md-2   border-end   ">
               <div class="align-self-center ">
-                <ul class="p-0 ">
-                  <li class="my-1 d-flex justify-content-between">
+                <ul class="p-0 mt-4 ">
+                  <li class="my-2 d-flex justify-content-between">
                     <a class="text-black " href="/">
                       Woman’s Fashion
                     </a>
                     <AiOutlineRight />
                   </li>
-                  <li class="my-1  d-flex justify-content-between">
+                  <li class="my-2  d-flex justify-content-between">
                     <a class="text-black" href="/">
                       Men’s Fashion
                     </a>
                     <AiOutlineRight />
                   </li>
-                  <li class="my-1">
+                  <li class="my-2">
                     <a class="text-black" href="/">
                       Electronics
                     </a>
                   </li>
-                  <li class="my-1">
+                  <li class="my-2">
                     <a class="text-black" href="/">
                       Home & Lifestyle
                     </a>
                   </li>
-                  <li class="my-1">
+                  <li class="my-2">
                     <a class="text-black" href="/">
                       Medicine
                     </a>
                   </li>
-                  <li class="my-1">
+                  <li class="my-2">
                     <a class="text-black" href="/">
                       Sports & Outdoor
                     </a>
                   </li>
-                  <li class="my-1">
+                  <li class="my-2">
                     <a class="text-black" href="/">
                       Baby’s & Toys
                     </a>
                   </li>
-                  <li class="my-1">
+                  <li class="my-2">
                     <a class="text-black" href="/">
                       Groceries & Pets
                     </a>
                   </li>
-                  <li class="my-1">
+                  <li class="my-2">
                     <a class="text-black" href="/">
                       Health & Beauty
                     </a>
@@ -76,7 +77,7 @@ export default function Home(props) {
                 </ul>
               </div>
             </div>
-            <div className="col-md-9 slider offset-1 bg-black">
+            <div className="col-md-9 slider offset-1 bg-black mt-4">
               <div
                 id="carouselExampleIndicators"
                 class="carousel slide"
@@ -328,7 +329,7 @@ export default function Home(props) {
                                 <div className=" mins">
                                   <p>-{Math.floor(Math.random() * 40 + 30)}%</p>{" "}
                                 </div>{" "}
-                                <div className="right-icons ">
+                                <div className="right-icons  ">
                                   <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
                                   <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
                                 </div>

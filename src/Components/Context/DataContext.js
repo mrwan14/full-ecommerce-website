@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from "react";
 import { getData } from "../../api/index";
 import { getCatogries, getBestSellingData, getOurProducts } from "../../api";
 export let DataContext = createContext(0);
-
 export default function DataContextProvider(props) {
   const [data, setData] = useState(null);
   const [catogries, setCatogries] = useState(null);

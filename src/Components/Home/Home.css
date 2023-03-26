@@ -49,6 +49,7 @@
 
   background-color: black;
   color: white;
+  cursor: pointer;
 }
 .img-container:hover .add-to-cart {
   display: flex;
@@ -127,6 +128,7 @@
 .catogry-container:hover {
   background-color: rgba(168, 81, 81, 0.467);
   color: white;
+  cursor: pointer;
 }
 .ad-desc {
   margin-top: 69px;

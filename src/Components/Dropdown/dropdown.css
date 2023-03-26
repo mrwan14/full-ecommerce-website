@@ -1,0 +1,19 @@
+.dropdown-menu {
+  margin-top: 210px;
+  margin-left: -200px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.dropdown-item {
+  color: white;
+}
+.dropdown {
+  width: 30px;
+}
+.open {
+  background-color: red;
+  border-radius: 50%;
+  height: 30px;
+}
+.dropdown-icon {
+  margin-left: 7px;
+}

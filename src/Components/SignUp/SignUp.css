@@ -1,0 +1,27 @@
+.text p {
+  margin-left: -120px;
+}
+.form {
+  margin-left: 20px;
+}
+.form .form-control {
+  width: 340px;
+  border: 0;
+  border-bottom: 1px solid rgb(154, 148, 148);
+  margin: auto;
+  margin-top: 40px;
+  border-radius: 0;
+}
+.form button {
+  margin-top: 40px;
+  border-radius: 4px;
+  height: 56px;
+  width: 361px;
+  color: white;
+  display: block;
+  margin-left: 250px;
+}
+.btn2
+{
+    border: 1px solid rgb(154, 148, 148);
+}
