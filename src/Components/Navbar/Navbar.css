@@ -27,7 +27,24 @@ form ::placeholder {
   width: 20px;
 }
 
-@media (min-width: 0px) and (max-width: 768px) {
+@media (min-width: 0px) and (max-width: 576px) {
+  form {
+    width: 200px;
+    height: 40px;
+    padding: auto;
+    margin-right:10px;
+  }
+  .icons
+  {
+    margin-right: 20px;
+
+  }
+.navbar-brand
+{
+  font-size: 15px;
+}
+}
+@media (min-width: 576px) and (max-width: 768px) {
   form {
     width: 200px;
     height: 40px;

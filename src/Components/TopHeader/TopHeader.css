@@ -22,12 +22,23 @@ p a {
   align-items: center;
 }
 
-@media (min-width: 0px) and (max-width: 768px) {
+@media (min-width: 0px) and (max-width: 576px) {
   .top-header {
     height: 58px;
-    display: flex;
-    justify-content: center;
-    align-items: end;
+
+    margin: 10px;
+    position: relative;
+  }
+  .black-bar .dropdown {
+    position: absolute;
+    top: 32px;
+    left:385px
+  }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  .top-header {
+    height: 58px;
+
     margin: 10px;
     position: relative;
   }
