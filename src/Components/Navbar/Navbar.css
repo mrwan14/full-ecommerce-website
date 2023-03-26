@@ -21,14 +21,21 @@ form ::placeholder {
   display: flex;
 }
 .icons .icon {
-
   cursor: pointer;
 }
-.btn-group
-{
+.btn-group {
   width: 20px;
-  
-
 }
 
-
+@media (min-width: 0px) and (max-width: 768px) {
+  form {
+    width: 200px;
+    height: 40px;
+    padding: auto;
+    margin-right: 20px;
+  }
+  .icons
+  {
+    margin-right: 10px;
+  }
+}
