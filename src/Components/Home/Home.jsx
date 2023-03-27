@@ -20,7 +20,7 @@ export default function Home(props) {
 
   return (
     <div>
-      <div className="home container">
+      <div className="home container hh">
 
         <div className="main-ad ">
           <div className="row">
