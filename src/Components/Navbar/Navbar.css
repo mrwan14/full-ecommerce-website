@@ -27,22 +27,39 @@ form ::placeholder {
   width: 20px;
 }
 
-@media (min-width: 0px) and (max-width: 576px) {
+@media (min-width: 0px) and (max-width: 360px) {
+
+  form {
+    width: 170px;
+    height: 40px;
+    margin-right: 90px;
+    
+  }
+  form ::placeholder {
+    font-size: 10px;
+  }
+  .icons {
+    font-size: 20px;
+    position: absolute;
+    right: 50px;
+  }
+  .navbar-brand {
+    font-size: 12px;
+  }
+}
+@media (min-width: 361px) and (max-width: 576px) {
   form {
     width: 200px;
     height: 40px;
     padding: auto;
-    margin-right:10px;
+    margin-right: 10px;
   }
-  .icons
-  {
+  .icons {
     margin-right: 20px;
-
   }
-.navbar-brand
-{
-  font-size: 15px;
-}
+  .navbar-brand {
+    font-size: 15px;
+  }
 }
 @media (min-width: 576px) and (max-width: 768px) {
   form {
@@ -51,8 +68,7 @@ form ::placeholder {
     padding: auto;
     margin-right: 20px;
   }
-  .icons
-  {
+  .icons {
     margin-right: 10px;
   }
 }

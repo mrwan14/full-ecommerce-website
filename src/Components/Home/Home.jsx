@@ -24,7 +24,7 @@ export default function Home(props) {
 
         <div className="main-ad ">
           <div className="row">
-            <div className="col-md-2   border-end   ">
+            <div className="col-md-2   border-end  menu  ">
               <div class="align-self-center ">
                 <ul class="p-0 mt-4 ">
                   <li class="my-2 d-flex justify-content-between">
@@ -136,53 +136,7 @@ export default function Home(props) {
                           Shop Now <AiOutlineArrowRight />
                         </button>
                       </div>
-                      <div className="w-50 fix-heigh">
-                        <img
-                          src={require("../../images/iphone.png")}
-                          class="d-block w-100 "
-                          alt="..."
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item active">
-                    <div className="w-100 d-flex">
-                      <div className="desc w-50 text-white   ">
-                        <div className="d-flex   ms-5 mt-5">
-                          <BsApple className="fs-1 " />
-                          <p className="ms-3 mt-2">iPhone 14 Series</p>
-                        </div>
-                        <h1 className="ms-5 mt-3">
-                          Up to 10% <br /> off Voucher
-                        </h1>
-                        <button className=" btn border-0 ms-5  bg-black text-white border-bottom ">
-                          Shop Now <AiOutlineArrowRight />
-                        </button>
-                      </div>
-                      <div className="w-50 fix-heigh">
-                        <img
-                          src={require("../../images/iphone.png")}
-                          class="d-block w-100 "
-                          alt="..."
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item active">
-                    <div className="w-100 d-flex">
-                      <div className="desc w-50 text-white   ">
-                        <div className="d-flex   ms-5 mt-5">
-                          <BsApple className="fs-1 " />
-                          <p className="ms-3 mt-2">iPhone 14 Series</p>
-                        </div>
-                        <h1 className="ms-5 mt-3">
-                          Up to 10% <br /> off Voucher
-                        </h1>
-                        <button className=" btn border-0 ms-5  bg-black text-white border-bottom ">
-                          Shop Now <AiOutlineArrowRight />
-                        </button>
-                      </div>
-                      <div className="w-50 fix-heigh">
+                      <div className="w-50 carousel-img">
                         <img
                           src={require("../../images/iphone.png")}
                           class="d-block w-100 "
@@ -205,7 +159,7 @@ export default function Home(props) {
                           Shop Now <AiOutlineArrowRight />
                         </button>
                       </div>
-                      <div className="w-50 fix-heigh">
+                      <div className="w-50 carousel-img">
                         <img
                           src={require("../../images/iphone.png")}
                           class="d-block w-100 "
@@ -228,7 +182,7 @@ export default function Home(props) {
                           Shop Now <AiOutlineArrowRight />
                         </button>
                       </div>
-                      <div className="w-50 fix-heigh">
+                      <div className="w-50 carousel-img">
                         <img
                           src={require("../../images/iphone.png")}
                           class="d-block w-100 "
@@ -251,7 +205,7 @@ export default function Home(props) {
                           Shop Now <AiOutlineArrowRight />
                         </button>
                       </div>
-                      <div className="w-50 fix-heigh">
+                      <div className="w-50 carousel-img">
                         <img
                           src={require("../../images/iphone.png")}
                           class="d-block w-100 "
@@ -274,7 +228,53 @@ export default function Home(props) {
                           Shop Now <AiOutlineArrowRight />
                         </button>
                       </div>
-                      <div className="w-50 fix-heigh">
+                      <div className="w-50 carousel-img">
+                        <img
+                          src={require("../../images/iphone.png")}
+                          class="d-block w-100 "
+                          alt="..."
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item ">
+                    <div className="w-100 d-flex">
+                      <div className="desc w-50 text-white   ">
+                        <div className="d-flex   ms-5 mt-5">
+                          <BsApple className="fs-1 " />
+                          <p className="ms-3 mt-2">iPhone 14 Series</p>
+                        </div>
+                        <h1 className="ms-5 mt-3">
+                          Up to 10% <br /> off Voucher
+                        </h1>
+                        <button className=" btn border-0 ms-5  bg-black text-white border-bottom ">
+                          Shop Now <AiOutlineArrowRight />
+                        </button>
+                      </div>
+                      <div className="w-50 carousel-img">
+                        <img
+                          src={require("../../images/iphone.png")}
+                          class="d-block w-100 "
+                          alt="..."
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item ">
+                    <div className="w-100 d-flex">
+                      <div className="desc w-50 text-white   ">
+                        <div className="d-flex   ms-5 mt-5">
+                          <BsApple className="fs-1 " />
+                          <p className="ms-3 mt-2">iPhone 14 Series</p>
+                        </div>
+                        <h1 className="ms-5 mt-3">
+                          Up to 10% <br /> off Voucher
+                        </h1>
+                        <button className=" btn border-0 ms-5  bg-black text-white border-bottom ">
+                          Shop Now <AiOutlineArrowRight />
+                        </button>
+                      </div>
+                      <div className="w-50 carousel-img">
                         <img
                           src={require("../../images/iphone.png")}
                           class="d-block w-100 "
@@ -296,7 +296,7 @@ export default function Home(props) {
               <h6 className="ms-3 mt-2 text-danger fw-bold">Today’s</h6>
             </div>{" "}
             <div className=" d-flex  align-items-center mt-3">
-              <h3 className="fw-bold  col-md-2 ">Flash Sales</h3>
+              <h3 className="fw-bold  col-md-2  flash-sales">Flash Sales</h3>
               <div className="timer col-md-9 offset-1  d-flex justify-content-between">
                 {" "}
                 <div>
@@ -304,11 +304,11 @@ export default function Home(props) {
                 </div>
                 <div className="d-flex ">
                   <div className="arrow d-flex justify-content-center align-items-center me-2">
-                    <AiOutlineArrowLeft className="fs-5" />{" "}
+                    <AiOutlineArrowLeft className="fs-6 " />{" "}
                   </div>
                   <div className="arrow d-flex justify-content-center align-items-center">
                     {" "}
-                    <AiOutlineArrowRight className="fs-5" />
+                    <AiOutlineArrowRight className="fs-6" />
                   </div>
                 </div>
               </div>{" "}
@@ -643,7 +643,7 @@ export default function Home(props) {
           </div>
           <div className="row">
             <div className="col-md-6 ps5-ad  bg-black d-flex justify-content-center  position-relative">
-              <div className=" mt-5">
+              <div className=" mt-5 ">
                 <img
                   src={require("../../images/ps5.png")}
                   alt=""
@@ -679,7 +679,7 @@ export default function Home(props) {
               </div>
               <div className="row">
                 <div className="col-md-6">
-                  <div className="speaker-img bg-black d-flex justify-content-center mt-5 position-relative">
+                  <div className="speaker bg-black d-flex justify-content-center mt-5 position-relative">
                     <div className="speaker-desc position-absolute text-white">
                       <h3 className="mb-0">Speakers</h3>
                       <p className="mb-0">Amazon wireless speakers</p>
@@ -696,7 +696,7 @@ export default function Home(props) {
                 </div>
                 <div className="col-md-6">
                   {" "}
-                  <div className="speaker-img bg-black d-flex justify-content-center mt-5 position-relative ">
+                  <div className="perfum bg-black d-flex justify-content-center mt-5 position-relative ">
                     <div className="speaker-desc position-absolute text-white ">
                       <h3 className="mb-0">Perfume</h3>
                       <p className="mb-0">GUCCI INTENSE OUD EDP</p>

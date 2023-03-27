@@ -10,7 +10,7 @@
 }
 .for-num {
   /* Heading/32PX Bold */
-
+text-align: center;
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
@@ -19,4 +19,18 @@
   /* or 94% */
 
   letter-spacing: 0.04em;
+}
+@media (min-width: 0px) and (max-width: 360px) {
+  .for-character {
+
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 18px;
+  }
+  .for-num {
+
+    font-weight: 500;
+    font-size: 22px;
+
+  }
 }
