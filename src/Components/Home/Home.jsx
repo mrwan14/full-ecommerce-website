@@ -315,7 +315,7 @@ export default function Home(props) {
             </div>
             <div>
               <div class="wrapper mt-5 mb-5">
-                <div class="content-wrapper">
+                <div class="content-wrapper ">
                   {data == null ? (
                     <div>...Loading Data</div>
                   ) : (
