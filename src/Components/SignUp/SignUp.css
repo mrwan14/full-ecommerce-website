@@ -1,5 +1,17 @@
-.text p {
-  margin-left: -120px;
+.title p {
+  margin-right: 130px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+.title h2 {
+  margin-right: 40px;
+  font-family: Inter;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0.04em;
 }
 .form {
   margin-left: 20px;
@@ -12,16 +24,71 @@
   margin-top: 40px;
   border-radius: 0;
 }
-.form button {
-  margin-top: 40px;
+.btns button {
   border-radius: 4px;
   height: 56px;
-  width: 361px;
+  width: 340px;
   color: white;
   display: block;
-  margin-left: 250px;
+  margin: auto;
 }
-.btn2
-{
-    border: 1px solid rgb(154, 148, 148);
+.btn2 {
+  border: 1px solid rgb(154, 148, 148);
+}
+.btns {
+  padding: 20px;
+}
+.sign-up-img img {
+  width: 100%;
+}
+
+@media (min-width: 0px) and (max-width: 576px) {
+  .sign-up-img img {
+    width: 100%;
+  }
+  .text {
+    margin-top: 70px;
+  }
+  .text h2 {
+    margin-left: -70px;
+  }
+
+  .sign-up .sign-up-btn {
+    height: 36px;
+    width: 103px;
+    padding: 0;
+    margin-right: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .sign-up .sign-up-btn p {
+    font-size: 12px;
+    margin-left: 0px;
+    margin-top: 15px;
+  }
+  .text .link {
+    font-size: 12px;
+  }
+  .sign-up .text .title h2 {
+    font-size: 26px;
+  }
+  .sign-up .text .title p {
+    font-size: 15px;
+  }
+  .btns {
+    margin-left: -20px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .btns {
+    margin-left: -0px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1000px) {
+
+  .text {
+    margin-top: 0px;
+  }
 }
