@@ -7,6 +7,34 @@ export default function DataContextProvider(props) {
   const [catogries, setCatogries] = useState(null);
   const [bestSellingData, setBestSellingData] = useState(null);
   const [ourProudcts, setOurProudcts] = useState(null);
+  const [wishList, setWishList] = useState([]);
+  useEffect(() => {
+    const storedWishList = localStorage.getItem("wishList");
+    if (storedWishList) {
+      setWishList(JSON.parse(storedWishList));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("wishList", JSON.stringify(wishList));
+  }, [wishList]);
+
+  const addToWishList = (product) => {
+    const existingProduct = wishList.find((p) => p.id === product.id);
+    if (existingProduct) {
+      // If the product already exists, do nothing
+      return;
+    } else {
+      // If the product doesn't exist, add it to the wish list array
+      setWishList([...wishList, product]);
+    }
+  };
+  function removeFromWishList(product) {
+    // Filter the product out of the wish list array
+    const newWishList = wishList.filter(p => p.id !== product.id);
+  
+    // Update the wish list state and local storage
+    setWishList(newWishList);
+  }
 
   useEffect(() => {
     // Immediately Invoked Function
@@ -19,14 +47,23 @@ export default function DataContextProvider(props) {
       setOurProudcts(await getOurProducts());
     })();
   }, []);
-  console.log(data);
+
   return (
     <DataContext.Provider
-      value={{ data, catogries, bestSellingData, ourProudcts }}
+      value={{
+        data,
+        catogries,
+        bestSellingData,
+        ourProudcts,
+        addToWishList,
+        removeFromWishList,
+        wishList,
+      }}
     >
       {data == null ||
       catogries == null ||
       bestSellingData == null ||
+      wishList == null ||
       ourProudcts == null ? (
         <div>Loading...</div>
       ) : (

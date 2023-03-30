@@ -55,7 +55,6 @@ export const getData = async () => {
           ImgSrc: require("../images/chair.png"),
           isTallImage: true,
         },
-
       ]);
     }, 0);
   });
@@ -69,8 +68,7 @@ export const getBestSellingData = async () => {
           Product_Name: "The north coat",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/gucci-coat.png"),
-          isTallImage: true,
-
+          // isTallImage: true,
         },
         {
           id: 2,
@@ -91,7 +89,6 @@ export const getBestSellingData = async () => {
           ImgSrc: require("../images/bool-saver.png"),
           isTallImage: true,
         },
-        
       ]);
     }, 0);
   });
@@ -106,69 +103,51 @@ export const getOurProducts = async () => {
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/dryFood.png"),
           isTallImage: true,
-          
-
-
         },
         {
           id: 2,
           Product_Name: "CANON EOS DSLR Camera",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/camera.png"),
-          isTallImage: true,
-
         },
         {
           id: 3,
           Product_Name: "ASUS FHD Gaming Laptop",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/labtop.png"),
-          isTallImage: true,
-
         },
         {
           id: 4,
           Product_Name: "Curology Product Set ",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/shampo.png"),
-          isTallImage: true,
-
         },
         {
           id: 5,
           Product_Name: "Kids Electric Car",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/kidsCar.png"),
-          isNew:true,
-
+          isNew: true,
         },
         {
           id: 6,
           Product_Name: "Jr. Zoom Soccer Cleats",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/stars.png"),
-          isTallImage: true,
-
         },
         {
           id: 7,
           Product_Name: "GP11 Shooter USB Gamepad",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/controller2.png"),
-          isNew:true,
-          isTallImage: true,
-
+          isNew: true,
         },
         {
           id: 8,
           Product_Name: "Quilted Satin Jacket",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/jacket.png"),
-          isTallImage: true,
-
-          
         },
-        
       ]);
     }, 0);
   });

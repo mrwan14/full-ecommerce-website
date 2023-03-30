@@ -15,13 +15,12 @@ import Timer from "../Timer/Timer";
 import StarRating from "../StarRating/StarRating";
 import { DataContext } from "../Context/DataContext";
 export default function Home(props) {
-  let { data, catogries, bestSellingData, ourProudcts } =
+  let { data, catogries, bestSellingData, ourProudcts ,addToWishList } =
     useContext(DataContext);
 
   return (
     <div>
       <div className="home container hh">
-
         <div className="main-ad ">
           <div className="row">
             <div className="col-md-2   border-end  menu  ">
@@ -330,8 +329,14 @@ export default function Home(props) {
                                   <p>-{Math.floor(Math.random() * 40 + 30)}%</p>{" "}
                                 </div>{" "}
                                 <div className="right-icons  ">
-                                  <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
-                                  <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
+                                  <button className=" d-block" onClick={()=>addToWishList(product)}>
+                                    {" "}
+                                    <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
+                                  </button>
+                                  <button >
+                                    {" "}
+                                    <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
+                                  </button>
                                 </div>
                               </div>
                               <div
@@ -447,10 +452,16 @@ export default function Home(props) {
                           <div className={`img-container`}>
                             <div className="icons d-flex justify-content-between">
                               <div className=" "></div>{" "}
-                              <div className="right-icons ">
-                                <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
-                                <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
-                              </div>
+                              <div className="right-icons  ">
+                                  <button className=" d-block" onClick={()=>addToWishList(product)}>
+                                    {" "}
+                                    <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
+                                  </button>
+                                  <button >
+                                    {" "}
+                                    <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
+                                  </button>
+                                </div>
                             </div>
                             <div
                               className={`${
@@ -504,7 +515,6 @@ export default function Home(props) {
                   </span>
                   <br />
                   <span className="date">Hours</span>
-                  
                 </p>
               </div>
               <div className="circle ">
@@ -592,10 +602,16 @@ export default function Home(props) {
                                 <div></div>
                               )}
                             </div>
-                            <div className="right-icons ">
-                              <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
-                              <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
-                            </div>
+                            <div className="right-icons  ">
+                                  <button className=" d-block" onClick={()=>addToWishList(product)}>
+                                    {" "}
+                                    <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
+                                  </button>
+                                  <button >
+                                    {" "}
+                                    <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
+                                  </button>
+                                </div>
                           </div>
                           <div
                             className={`${

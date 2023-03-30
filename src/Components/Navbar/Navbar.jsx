@@ -1,13 +1,12 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React ,{useState} from "react";
+import React, { useState } from "react";
 import { BsCart3 } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import  RecipeDropDownList  from "../Dropdown/Dropdown";
+import RecipeDropDownList from "../Dropdown/Dropdown";
 export default function Navbar() {
-
   return (
     <div>
       <nav class="navbar navbar-expand-lg bg-white  border-bottom  ">
@@ -63,18 +62,18 @@ export default function Navbar() {
             <div className="icons ">
               <div className=" icon">
                 {" "}
-                <AiOutlineHeart className=" ms-1 mb-1 " />
+                <Link to={"/wishlist"}className=" text-black" >
+                  {" "}
+                  <AiOutlineHeart className=" ms-1 mb-1 " />
+                </Link>{" "}
               </div>{" "}
               <div className=" icon">
                 {" "}
                 <BsCart3 className=" ms-1 mb-1 " />
               </div>{" "}
               <div className="user-dropdown">
-                <RecipeDropDownList/>
-            {" "}
-
-          </div>
-
+                <RecipeDropDownList />{" "}
+              </div>
             </div>
           </div>
         </div>

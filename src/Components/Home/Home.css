@@ -36,6 +36,26 @@
   position: relative;
   overflow: hidden;
 }
+.img-container img {
+  width: 55%;
+}
+.chair {
+  width: 70%;
+  text-align: right;
+  margin-top: -40px;
+}
+.mins {
+  width: 20%;
+  height: 25px;
+  border-radius: 4px;
+  margin-left: -24px;
+  margin-top: -26px;
+  background-color: red;
+}
+.right-icons {
+  margin-right: 60px;
+  margin-top: 10px;
+}
 .add-to-cart {
   position: absolute;
   bottom: 0px;
@@ -53,25 +73,6 @@
 }
 .img-container:hover .add-to-cart {
   display: flex;
-}
-.img-container img {
-  width: 55%;
-  margin-top: 20px;
-}
-.chair {
-  margin-top: -60px;
-}
-.mins {
-  width: 20%;
-  height: 25px;
-  border-radius: 4px;
-  margin-left: -24px;
-  margin-top: -26px;
-  background-color: red;
-}
-.right-icons {
-  margin-right: 60px;
-  margin-top: 10px;
 }
 
 .wrapper {
