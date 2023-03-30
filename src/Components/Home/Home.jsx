@@ -15,7 +15,7 @@ import Timer from "../Timer/Timer";
 import StarRating from "../StarRating/StarRating";
 import { DataContext } from "../Context/DataContext";
 export default function Home(props) {
-  let { data, catogries, bestSellingData, ourProudcts ,addToWishList } =
+  let { data, catogries, bestSellingData, ourProudcts ,addTocartItems,addToWishList } =
     useContext(DataContext);
 
   return (
@@ -347,7 +347,9 @@ export default function Home(props) {
                                 {" "}
                                 <img src={product.ImgSrc} alt="" />
                               </div>
-                              <div className="add-to-cart">Add To Cart</div>
+                              <div className="add-to-cart">
+                                <button className=" text-white fs-6" onClick={()=>{addTocartItems(product)}}>Add To Cart</button>
+                              </div>
                             </div>
                             <div className="product-desc m-3">
                               <h5>{product.Product_Name}</h5>
@@ -471,8 +473,9 @@ export default function Home(props) {
                               {" "}
                               <img src={product.ImgSrc} alt="" />
                             </div>
-                            <div className="add-to-cart">Add To Cart</div>
-                          </div>
+                            <div className="add-to-cart">
+                                <button className=" text-white fs-6" onClick={()=>{addTocartItems(product)}}>Add To Cart</button>
+                              </div>                          </div>
                           <div className="product-desc m-3">
                             <h5>{product.Product_Name}</h5>
                             <div className="price d-flex">
@@ -621,8 +624,9 @@ export default function Home(props) {
                             {" "}
                             <img src={product.ImgSrc} alt="" />
                           </div>
-                          <div className="add-to-cart">Add To Cart</div>
-                        </div>
+                          <div className="add-to-cart">
+                                <button className=" text-white fs-6" onClick={()=>{addTocartItems(product)}}>Add To Cart</button>
+                              </div>                        </div>
                         <div className="product-desc m-3">
                           <h5>{product.Product_Name}</h5>
                           <div className="price d-flex align-items-center">

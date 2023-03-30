@@ -14,24 +14,31 @@ export const getData = async () => {
           Product_Name: "HAVIT HV-G92 Gamepad",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/controller.png"),
+          Quantity:1
         },
         {
           id: 2,
           Product_Name: "AK-900 Wired Keyboard",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/keyboard.png"),
+          Quantity:1
+
         },
         {
           id: 3,
           Product_Name: "IPS LCD Gaming Monitor",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/screen.png"),
+          Quantity:1
+
         },
         {
           id: 4,
           Product_Name: "S-Series Comfort Chair ",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/chair.png"),
+          Quantity:1,
+
           isTallImage: true,
         },
         {
@@ -39,6 +46,7 @@ export const getData = async () => {
           Product_Name: "S-Series Comfort Chair ",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/chair.png"),
+          Quantity:1,
           isTallImage: true,
         },
         {
@@ -46,6 +54,7 @@ export const getData = async () => {
           Product_Name: "S-Series Comfort Chair ",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/chair.png"),
+          Quantity:1,
           isTallImage: true,
         },
         {
@@ -53,6 +62,7 @@ export const getData = async () => {
           Product_Name: "S-Series Comfort Chair ",
           Price: Math.floor(Math.random() * 500 + 100),
           ImgSrc: require("../images/chair.png"),
+          Quantity:2,
           isTallImage: true,
         },
       ]);

@@ -68,8 +68,11 @@ export default function Navbar() {
                 </Link>{" "}
               </div>{" "}
               <div className=" icon">
+              <Link to={"/cart"}className=" text-black" >
+                  {" "}
+                  <BsCart3 className=" ms-1 mb-1 " />
+                </Link>{" "}
                 {" "}
-                <BsCart3 className=" ms-1 mb-1 " />
               </div>{" "}
               <div className="user-dropdown">
                 <RecipeDropDownList />{" "}

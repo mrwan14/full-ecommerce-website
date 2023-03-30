@@ -1,0 +1,76 @@
+.img img {
+  width: 40%;
+}
+.product-info,
+.product-titles {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  padding: 20px;
+}
+.quantity {
+  height: 44px;
+  width: 72px;
+  border: 1.5px solid rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  margin: auto;
+}
+.quantity p {
+  margin-top: 11px;
+  margin-left: 5px;
+}
+.crement {
+  margin-top: -5px;
+}
+.cart-btn .btn-white {
+  height: 56px;
+  width: 218px;
+  border-radius: 4px;
+  padding: 25px 48px 16px 48px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: black;
+}
+.btn-white:hover,
+.Apply-Coupon:hover,
+.checkout-btn:hover {
+  background-color: black;
+  color: rgb(251, 251, 251);
+}
+.cart-btn button p,
+.Apply-Coupon p,
+.checkout-btn p {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+}
+.coupon .email-input input {
+  border: rgba(0, 0, 0, 1) 1px solid;
+  height: 56px;
+  width: 300px;
+
+  border-radius: 4px;
+}
+.Apply-Coupon {
+  background-color: rgba(219, 68, 68, 1);
+  height: 56px;
+  width: 218px;
+  border-radius: 4px;
+  padding: 25px 48px 16px 48px;
+  color: rgb(255, 255, 255);
+  margin-right: 50px;
+}
+.checkout-btn {
+  height: 56px;
+  width: 260px;
+  background-color: rgba(219, 68, 68, 1);
+  border-radius: 4px;
+  padding: 16px 48px 16px 48px;
+  margin-left: 150px;
+}
+.cart-total {
+  border: 1.5px solid #000000;
+  border-radius: 4px;
+}
