@@ -11,16 +11,27 @@ export default function Navbar() {
   let { Cart, WishList } = useContext(ProductContext);
   return (
     <div>
-      <nav class="u navbar-expand-lg bg-white  border-bottom  mt-2 ">
-        <div className="container   d-flex justify-content-between ">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light bg-white  border-bottom  mt-2  ">
+        <div className="container">
           <div>
             <Link to={"/"} class="navbar-brand">
               Exclusvie
             </Link>{" "}
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarTogglerDemo02"
+              aria-controls="navbarTogglerDemo02"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
           </div>
           <div>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav  me-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul class="navbar-nav  mb-2 mb-lg-0">
                 <li class="nav-item me-2 ">
                   <Link to={"/"} class="nav-link active" aria-current="page">
                     Home
@@ -57,59 +68,61 @@ export default function Navbar() {
                   </>
                 )}
               </ul>
-            </div>{" "}
-          </div>
-          <div className=" d-flex">
-            <form class="searchbar">
-              <input
-                class="form-control  bg-light fontAwesome "
-                type="search"
-                placeholder="  What are you looking for?                                       &#xF002;"
-                aria-label="Search"
-              />
-            </form>
-            {localStorage.getItem("userToken") ? (
-              <div>
-                <div className="icons ">
-                  <div className=" icon">
-                    {" "}
-                    <Link
-                      to={"/wishlist"}
-                      className={`${
-                        WishList.length === 0 ? "text-black " : "text-danger"
-                      }`}
-                    >
-                      {" "}
-                      <AiOutlineHeart className=" ms-1 mb-1 " />
-                      <span class="badge badge-warning" id="lblCartCount">
+              <div className=" d-flex">
+                <form class="searchbar">
+                  <input
+                    class="form-control  bg-light fontAwesome "
+                    type="search"
+                    placeholder="  What are you looking for?                                       &#xF002;"
+                    aria-label="Search"
+                  />
+                </form>
+                {localStorage.getItem("userToken") ? (
+                  <div>
+                    <div className="icons ">
+                      <div className=" icon">
                         {" "}
-                        {WishList.length}{" "}
-                      </span>
-                    </Link>
-                  </div>{" "}
-                  <div className=" icon">
-                    <Link
-                      to={"/cart"}
-                      className={`${
-                        Cart.length === 0 ? "text-black" : "text-danger"
-                      }`}
-                    >
-                      <BsCart3 className=" ms-1 mb-1 " />
+                        <Link
+                          to={"/wishlist"}
+                          className={`${
+                            WishList.length === 0
+                              ? "text-black "
+                              : "text-danger"
+                          }`}
+                        >
+                          {" "}
+                          <AiOutlineHeart className=" ms-1 mb-1 " />
+                          <span class="badge badge-warning" id="lblCartCount">
+                            {" "}
+                            {WishList.length}{" "}
+                          </span>
+                        </Link>
+                      </div>{" "}
+                      <div className=" icon">
+                        <Link
+                          to={"/cart"}
+                          className={`${
+                            Cart.length === 0 ? "text-black" : "text-danger"
+                          }`}
+                        >
+                          <BsCart3 className=" ms-1 mb-1 " />
 
-                      <span class="badge badge-warning" id="lblCartCount">
-                        {" "}
-                        {Cart.length}{" "}
-                      </span>
-                    </Link>{" "}
-                  </div>{" "}
-                  <div className="user-dropdown">
-                    <RecipeDropDownList />{" "}
+                          <span class="badge badge-warning" id="lblCartCount">
+                            {" "}
+                            {Cart.length}{" "}
+                          </span>
+                        </Link>{" "}
+                      </div>{" "}
+                      <div className="user-dropdown">
+                        <RecipeDropDownList />{" "}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  ""
+                )}
               </div>
-            ) : (
-              ""
-            )}
+            </div>{" "}
           </div>
         </div>
       </nav>

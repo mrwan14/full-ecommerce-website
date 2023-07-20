@@ -13,6 +13,9 @@
   line-height: 18px;
   /* identical to box height, or 150% */
 }
+.navbar-nav {
+  margin-right: 130px;
+}
 .icons {
   font-size: 30px;
   margin-left: 40px;

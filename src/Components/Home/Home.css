@@ -1,13 +1,6 @@
 .container {
   width: 1100px;
 }
-.carousel-indicators .circle-carousel {
-  width: 12px;
-  height: 12px;
-}
-.carousel-indicators .active {
-  background-color: tomato;
-}
 .brdr {
   height: 40px;
   width: 20px;
@@ -17,18 +10,6 @@
 }
 .timer {
   margin-top: -10px;
-}
-.arrow {
-  width: 46px;
-  height: 46px;
-  background-color: rgba(245, 245, 245, 1);
-  border-radius: 50%;
-}
-.scroll {
-  width: 2000px;
-  height: 450px;
-  overflow-y: hidden;
-  overflow-x: scroll;
 }
 
 .img-container {
@@ -86,31 +67,6 @@
   display: flex;
 }
 
-.wrapper {
-  display: inline-block;
-  width: 1200px;
-  height: 1000px;
-  background-color: white;
-  padding: 16px 0;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  text-align: start;
-}
-.wrapper::-webkit-scrollbar {
-  display: none;
-}
-
-.content-wrapper {
-  height: 100%;
-  width: calc((80vw / 5) * 7);
-  text-align: start;
-}
-
-.buttons-wrapper {
-  position: absolute;
-  width: 90vw;
-  height: calc(100px - 16px);
-}
 .view-all-details button {
   width: 234px;
   height: 56px;
@@ -123,21 +79,7 @@
   background-color: rgb(0, 0, 0, 0.3);
   margin: auto;
 }
-.categories-section .wrapper {
-  display: inline-block;
-  width: 1200px;
-  height: 635px;
-  background-color: white;
-  padding: 16px 0;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  text-align: start;
-}
-.categories-section .content-wrapper {
-  height: 100%;
-  width: calc((60vw / 5) * 6);
-  text-align: start;
-}
+
 .catogry-container:hover {
   background-color: rgba(168, 81, 81, 0.467);
   color: white;
@@ -272,22 +214,25 @@
 }
 
 @media (min-width: 0px) and (max-width: 360px) {
+  .img-container img {
+    width: 80%;
+    position: relative;
+  }
+  .right-icons {
+    margin-right: 50px;
+    margin-top: 10px;
+  }
+  .container {
+    width: 360px;
+  }
+
   .menu {
     font-size: 12px;
   }
   .slider {
     margin-left: -10px;
   }
-  .carousel-indicators {
-    margin-left: 220px;
-  }
-  .carousel-indicators .circle-carousel {
-    width: 8px;
-    height: 8px;
-  }
-  .carousel-img {
-    margin-top: 100px;
-  }
+
   .brdr {
     height: 40px;
     width: 20px;
@@ -304,14 +249,7 @@
   .timer {
     margin-left: -12px;
   }
-  .img-container {
-    width: 85%;
-  }
 
-  .img-container img {
-    width: 30%;
-    margin-top: 20px;
-  }
   .ad-desc {
     margin-top: 69px;
     margin-left: 20px;
@@ -337,19 +275,23 @@
   .ps5-ad img {
     width: 78%;
   }
+}
+@media (min-width: 361px) and (max-width: 573px) {
+  .img-container img {
+    width: 30%;
+    position: relative;
+  }
   .right-icons {
-    margin-right: 30px;
+    margin-right: 50px;
     margin-top: 10px;
   }
-}
-@media (min-width: 361px) and (max-width: 768px) {
+  .container {
+    width: 768px;
+  }
   .slider {
     margin-left: -10px;
   }
-  .img-container img {
-    width: 30%;
-    margin-top: 20px;
-  }
+
   .ad-desc {
     margin-top: 69px;
     margin-left: 20px;
@@ -373,14 +315,48 @@
     margin: 10px;
   }
 }
+@media (min-width: 573px) and (max-width: 768px) {
+ 
+  .right-icons {
+    margin-right: 50px;
+    margin-top: 10px;
+  }
+  .container {
+    width: 768px;
+  }
+  .slider {
+    margin-left: -10px;
+  }
+
+  .ad-desc {
+    margin-top: 69px;
+    margin-left: 20px;
+  }
+  .ad-desc h1 {
+    font-size: 18px;
+  }
+  .circle {
+    width: 45px;
+    height: 45px;
+    position: relative;
+  }
+
+  .date {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+  }
+  .ps5-ad {
+    padding: 20px;
+    margin: 10px;
+  }
+}
+
 @media (min-width: 770px) and (max-width: 1000px) {
   .carousel-inner {
     margin-top: 70px;
   }
-  .img-container img {
-    width: 70%;
-    margin-top: 50px;
-  }
+
   .ad-desc {
     margin-top: 69px;
     margin-left: 20px;
