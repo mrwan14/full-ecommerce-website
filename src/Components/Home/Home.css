@@ -1,3 +1,6 @@
+.container {
+  width: 1100px;
+}
 .carousel-indicators .circle-carousel {
   width: 12px;
   height: 12px;
@@ -31,19 +34,26 @@
 .img-container {
   width: 100%;
   text-align: center;
-  background-color: rgba(245, 245, 245, 1);
+  background-color: rgb(255, 255, 255);
   height: 300px;
-  position: relative;
   overflow: hidden;
+  position: relative;
 }
 .img-container img {
-  width: 55%;
+  width: 100%;
+  position: relative;
 }
-.chair {
-  width: 70%;
-  text-align: right;
-  margin-top: -40px;
+.img-container img:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
 }
+.img-container .icons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
 .mins {
   width: 20%;
   height: 25px;
@@ -52,6 +62,7 @@
   margin-top: -26px;
   background-color: red;
 }
+
 .right-icons {
   margin-right: 60px;
   margin-top: 10px;
@@ -77,8 +88,8 @@
 
 .wrapper {
   display: inline-block;
-  width: 1500px;
-  height: 450px;
+  width: 1200px;
+  height: 1000px;
   background-color: white;
   padding: 16px 0;
   overflow-x: scroll;
@@ -87,14 +98,6 @@
 }
 .wrapper::-webkit-scrollbar {
   display: none;
-}
-
-.content {
-  display: inline-block;
-  height: 100%;
-  width: calc(90vw / 5);
-  text-align: start;
-  float: left;
 }
 
 .content-wrapper {
@@ -120,12 +123,21 @@
   background-color: rgb(0, 0, 0, 0.3);
   margin: auto;
 }
-.catogry-container {
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  height: 145px;
-  text-align: center;
+.categories-section .wrapper {
+  display: inline-block;
+  width: 1200px;
+  height: 635px;
+  background-color: white;
+  padding: 16px 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  text-align: start;
 }
-
+.categories-section .content-wrapper {
+  height: 100%;
+  width: calc((60vw / 5) * 6);
+  text-align: start;
+}
 .catogry-container:hover {
   background-color: rgba(168, 81, 81, 0.467);
   color: white;

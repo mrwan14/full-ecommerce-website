@@ -21,15 +21,18 @@
   margin-left: 5px;
 }
 .crement {
+  display: flex;
+  flex-direction: column;
   margin-top: -5px;
 }
 .cart-btn .btn-white {
   height: 56px;
-  width: 218px;
+  width: 200px;
   border-radius: 4px;
   padding: 25px 48px 16px 48px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   color: black;
+  text-align: center;
 }
 .btn-white:hover,
 .Apply-Coupon:hover,

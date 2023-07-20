@@ -41,10 +41,16 @@ a {
   justify-content: space-between;
   font-size: 20px;
 }
+.page-footer {
+  margin-top: 400px;
+}
 
 @media (min-width: 576px) {
   .container-fluid {
     width: 100%;
+  }
+  .page-footer {
+    margin-top: 300px;
   }
 }
 

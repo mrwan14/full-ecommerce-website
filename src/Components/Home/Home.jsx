@@ -1,6 +1,4 @@
-/* eslint-disable react/style-prop-object */
-/* eslint-disable no-unused-vars */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { AiOutlineRight } from "react-icons/ai";
 import { BsApple } from "react-icons/bs";
 import { AiOutlineArrowRight } from "react-icons/ai";
@@ -11,72 +9,31 @@ import { BsHeadset } from "react-icons/bs";
 import { BsShieldCheck } from "react-icons/bs";
 import "./Home.css";
 import Timer from "../Timer/Timer";
-
 import StarRating from "../StarRating/StarRating";
-import { DataContext } from "../Context/DataContext";
+import { ProductContext } from "../Context/ProductContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 export default function Home(props) {
-  let { data, catogries, bestSellingData, ourProudcts ,addTocartItems,addToWishList } =
-    useContext(DataContext);
-
+  let {
+    Products,
+    categories,
+    Brands,
+    addToWishList,
+    getSpecificCategory,
+    addProductToCart,
+    getProductDetails,
+  } = useContext(ProductContext);
   return (
-    <div>
+    <>
+      <div>
+        {" "}
+        <ToastContainer />
+      </div>
       <div className="home container hh">
         <div className="main-ad ">
           <div className="row">
-            <div className="col-md-2   border-end  menu  ">
-              <div class="align-self-center ">
-                <ul class="p-0 mt-4 ">
-                  <li class="my-2 d-flex justify-content-between">
-                    <a class="text-black " href="/">
-                      Woman’s Fashion
-                    </a>
-                    <AiOutlineRight />
-                  </li>
-                  <li class="my-2  d-flex justify-content-between">
-                    <a class="text-black" href="/">
-                      Men’s Fashion
-                    </a>
-                    <AiOutlineRight />
-                  </li>
-                  <li class="my-2">
-                    <a class="text-black" href="/">
-                      Electronics
-                    </a>
-                  </li>
-                  <li class="my-2">
-                    <a class="text-black" href="/">
-                      Home & Lifestyle
-                    </a>
-                  </li>
-                  <li class="my-2">
-                    <a class="text-black" href="/">
-                      Medicine
-                    </a>
-                  </li>
-                  <li class="my-2">
-                    <a class="text-black" href="/">
-                      Sports & Outdoor
-                    </a>
-                  </li>
-                  <li class="my-2">
-                    <a class="text-black" href="/">
-                      Baby’s & Toys
-                    </a>
-                  </li>
-                  <li class="my-2">
-                    <a class="text-black" href="/">
-                      Groceries & Pets
-                    </a>
-                  </li>
-                  <li class="my-2">
-                    <a class="text-black" href="/">
-                      Health & Beauty
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-md-9 slider offset-1 bg-black mt-4">
+            <div className="col-md-12 slider bg-black mt-4">
               <div
                 id="carouselExampleIndicators"
                 class="carousel slide"
@@ -315,58 +272,76 @@ export default function Home(props) {
             <div>
               <div class="wrapper mt-5 mb-5">
                 <div class="content-wrapper ">
-                  {data == null ? (
+                  {Products == null ? (
                     <div>...Loading Data</div>
                   ) : (
                     <div className="row">
-                      {data.map((product) => (
-                        <div className="col-md-2  col-sm-3">
-                          <div className="product-container">
+                      {Products.map((product) => (
+                        <div className="col-md-2  ">
+                          <div
+                            className="product-container"
+                            onClick={() => {
+                              getProductDetails(product);
+                            }}
+                          >
                             {" "}
                             <div className={`img-container`}>
+                              <img src={product.imageCover} alt="" />
                               <div className="icons d-flex justify-content-between">
                                 <div className=" mins">
-                                  <p>-{Math.floor(Math.random() * 40 + 30)}%</p>{" "}
+                                  <p>20%</p>{" "}
                                 </div>{" "}
-                                <div className="right-icons  ">
-                                  <button className=" d-block" onClick={()=>addToWishList(product)}>
+                                <div className="right-icons">
+                                  <button
+                                    className=" d-block"
+                                    onClick={() => addToWishList(product)}
+                                  >
                                     {" "}
                                     <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
                                   </button>
-                                  <button >
-                                    {" "}
-                                    <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
+                                  <Link
+                                    to="/productDetails"
+                                    className=" text-white"
+                                  >
+                                    <button>
+                                      {" "}
+                                      <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
+                                    </button>
+                                  </Link>
+                                </div>
+                              </div>{" "}
+                              {localStorage.getItem("userToken") ? (
+                                <div className="add-to-cart">
+                                  <button
+                                    className=" text-white fs-6"
+                                    onClick={() => {
+                                      addProductToCart(product);
+                                    }}
+                                  >
+                                    Add To Cart
                                   </button>
                                 </div>
-                              </div>
-                              <div
-                                className={`${
-                                  product.isTallImage ? "chair" : "none"
-                                } `}
-                              >
-                                {" "}
-                                <img src={product.ImgSrc} alt="" />
-                              </div>
-                              <div className="add-to-cart">
-                                <button className=" text-white fs-6" onClick={()=>{addTocartItems(product)}}>Add To Cart</button>
-                              </div>
+                              ) : (
+                                ""
+                              )}
                             </div>
                             <div className="product-desc m-3">
-                              <h5>{product.Product_Name}</h5>
+                              <h5 className=" text-success fs-6">
+                                {product.category.name}
+                              </h5>
+                              <h5>{product.title}</h5>
                               <div className="price d-flex">
                                 <p className="text-danger me-3">
-                                  ${product.Price}{" "}
+                                  ${product.price}{" "}
                                 </p>
                                 <p className="text-muted  text-decoration-line-through">
-                                  $
-                                  {product.Price +
-                                    Math.floor(Math.random() * 200 + 100)}{" "}
+                                  ${product.price + 100}{" "}
                                 </p>
                               </div>{" "}
                               <div className="star-rating d-flex  ">
                                 <StarRating />{" "}
                                 <p className="mt-2 ms-3">
-                                  ({Math.floor(Math.random() * 100 + 10)})
+                                  {product.ratingsAverage}
                                 </p>
                               </div>
                             </div>
@@ -403,24 +378,34 @@ export default function Home(props) {
               </div>
             </div>
           </div>
-          <div className="catogries-list my-5 ">
-            {catogries == null ? (
-              <div>loading</div>
-            ) : (
-              <div>
-                {" "}
-                <div className="row">
-                  {catogries.map((catogry) => (
-                    <div className="col-md-2  ">
-                      <div className="catogry-container">
-                        <h1 className="mt-4">{catogry.catogriesIcon}</h1>
-                        <h6> {catogry.catogriesName}</h6>{" "}
-                      </div>
+          <div className="wrapper">
+            <div className="content-wrapper">
+              <div className="catogries-list my-5 ">
+                {categories == null ? (
+                  <div>loading</div>
+                ) : (
+                  <div>
+                    {" "}
+                    <div className="row">
+                      {categories.map((catogry) => (
+                        <div className="col-md-2  ">
+                          <div
+                            className="catogry-container"
+                            onClick={() => {
+                              getSpecificCategory(catogry);
+                            }}
+                          >
+                            {" "}
+                            <img src={catogry.image} className="w-100" alt="" />
+                          </div>
+                          <h6> {catogry.name}</h6>{" "}
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
         <div className="line  my-5"></div>
@@ -429,10 +414,10 @@ export default function Home(props) {
             <div className="d-flex">
               {" "}
               <div className="brdr"></div>
-              <h6 className="ms-3 mt-2 text-danger fw-bold">This Month</h6>
+              <h6 className="ms-3 mt-2 text-danger fw-bold">Brands</h6>
             </div>{" "}
             <div className=" d-flex  align-items-center mt-3">
-              <h3 className="fw-bold  col-md-4 ">Best Selling Products</h3>
+              <h3 className="fw-bold  col-md-4 ">Browse By Brands</h3>
               <div className=" col-md-7 offset-1  d-flex justify-content-between">
                 <div></div>
                 <div className="d-flex ">
@@ -440,60 +425,30 @@ export default function Home(props) {
                 </div>
               </div>{" "}
             </div>
-            {data == null ? (
+            {Brands == null ? (
               <div>loading</div>
             ) : (
               <div>
                 {" "}
                 <div className="row mt-5">
-                  {bestSellingData.map((product) => (
+                  {Brands.map((product) => (
                     <>
-                      <div className="col-md-3">
-                        <div className="product-container">
+                      <div className="col-md-2">
+                        <div className="product-container ">
                           {" "}
-                          <div className={`img-container`}>
-                            <div className="icons d-flex justify-content-between">
-                              <div className=" "></div>{" "}
-                              <div className="right-icons  ">
-                                  <button className=" d-block" onClick={()=>addToWishList(product)}>
-                                    {" "}
-                                    <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
-                                  </button>
-                                  <button >
-                                    {" "}
-                                    <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
-                                  </button>
-                                </div>
-                            </div>
-                            <div
-                              className={`${
-                                product.isTallImage ? "chair" : "none"
-                              } `}
-                            >
+                          <div className={``}>
+                            <div>
                               {" "}
-                              <img src={product.ImgSrc} alt="" />
+                              <img
+                                src={product.image}
+                                alt=""
+                                className="w-75"
+                              />
                             </div>
-                            <div className="add-to-cart">
-                                <button className=" text-white fs-6" onClick={()=>{addTocartItems(product)}}>Add To Cart</button>
-                              </div>                          </div>
+                          </div>
                           <div className="product-desc m-3">
-                            <h5>{product.Product_Name}</h5>
-                            <div className="price d-flex">
-                              <p className="text-danger me-3">
-                                ${product.Price}{" "}
-                              </p>
-                              <p className="text-muted  text-decoration-line-through">
-                                $
-                                {product.Price +
-                                  Math.floor(Math.random() * 200 + 100)}{" "}
-                              </p>
-                            </div>{" "}
-                            <div className="star-rating d-flex  ">
-                              <StarRating />{" "}
-                              <p className="mt-2 ms-3">
-                                ({Math.floor(Math.random() * 100 + 10)})
-                              </p>
-                            </div>
+                            <h5>{product.name}</h5>
+                            <div className="price d-flex"></div>{" "}
                           </div>
                         </div>
                       </div>
@@ -513,36 +468,28 @@ export default function Home(props) {
             <div className="d-flex">
               <div className="circle ">
                 <p className="mt-2">
-                  <span className="fw-bolder fs-5 ">
-                    {Math.floor(Math.random() * 24 + 0)}{" "}
-                  </span>
+                  <span className="fw-bolder fs-5 ">10 </span>
                   <br />
                   <span className="date">Hours</span>
                 </p>
               </div>
               <div className="circle ">
                 <p className="mt-2">
-                  <span className="fw-bolder fs-5  ">
-                    {Math.floor(Math.random() * 30 + 0)}{" "}
-                  </span>
+                  <span className="fw-bolder fs-5  ">5 </span>
                   <br />
                   <span className="date"> Days</span>{" "}
                 </p>
               </div>
               <div className="circle ">
                 <p className="mt-2">
-                  <span className="fw-bolder fs-5 ">
-                    {Math.floor(Math.random() * 60 + 0)}{" "}
-                  </span>
+                  <span className="fw-bolder fs-5 ">7 </span>
                   <br />
                   <span className="date">mins</span>
                 </p>
               </div>
               <div className="circle ">
                 <p className="mt-2 ">
-                  <span className="fw-bolder fs-5 ">
-                    {Math.floor(Math.random() * 60 + 0)}{" "}
-                  </span>
+                  <span className="fw-bolder fs-5 ">5 </span>
                   <br />
                   <span className="date ms-1 ">sec</span>
                 </p>
@@ -582,64 +529,70 @@ export default function Home(props) {
               </div>
             </div>{" "}
           </div>
-          {data == null ? (
+          {Products == null ? (
             <div>loading</div>
           ) : (
             <div>
               {" "}
               <div className="row mt-5">
-                {ourProudcts.map((product) => (
+                {Products.map((product) => (
                   <>
                     <div className="col-md-3">
                       <div className="product-container">
-                        {" "}
                         <div className={`img-container`}>
+                          <img src={product.imageCover} alt="" />
                           <div className="icons d-flex justify-content-between">
-                            <div className="">
-                              {" "}
-                              {product.isNew ? (
-                                <div className="new-product ">
-                                  <p className="mt-1">New</p>
-                                </div>
-                              ) : (
-                                <div></div>
-                              )}
-                            </div>
+                            <div className=" mins">
+                              <p>20%</p>{" "}
+                            </div>{" "}
                             <div className="right-icons  ">
-                                  <button className=" d-block" onClick={()=>addToWishList(product)}>
-                                    {" "}
-                                    <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
-                                  </button>
-                                  <button >
-                                    {" "}
-                                    <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
-                                  </button>
-                                </div>
-                          </div>
-                          <div
-                            className={`${
-                              product.isTallImage ? "chair" : "none"
-                            } `}
-                          >
-                            {" "}
-                            <img src={product.ImgSrc} alt="" />
-                          </div>
-                          <div className="add-to-cart">
-                                <button className=" text-white fs-6" onClick={()=>{addTocartItems(product)}}>Add To Cart</button>
-                              </div>                        </div>
-                        <div className="product-desc m-3">
-                          <h5>{product.Product_Name}</h5>
-                          <div className="price d-flex align-items-center">
-                            <p className="text-danger me-2 mt-2">
-                              ${product.Price}{" "}
-                            </p>
-                            <div className="star-rating d-flex   ">
-                              <StarRating />{" "}
-                              <p className="mt-2 ms-3">
-                                ({Math.floor(Math.random() * 100 + 10)})
-                              </p>
+                              <button
+                                className=" d-block"
+                                onClick={() => addToWishList(product)}
+                              >
+                                {" "}
+                                <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
+                              </button>
+                              <button>
+                                {" "}
+                                <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
+                              </button>
                             </div>
                           </div>{" "}
+                          {localStorage.getItem("userToken") ? (
+                            <div className="add-to-cart">
+                              <button
+                                className=" text-white fs-6"
+                                onClick={() => {
+                                  addProductToCart(product);
+                                }}
+                              >
+                                Add To Cart
+                              </button>
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div className="product-desc m-3">
+                          <h5 className=" text-success fs-6">
+                            {product.category.name}
+                          </h5>
+                          <h5>{product.title}</h5>
+                          <div className="price d-flex">
+                            <p className="text-danger me-3">
+                              ${product.price}{" "}
+                            </p>
+                            <p className="text-muted  text-decoration-line-through">
+                              ${product.price + 100}{" "}
+                            </p>
+                          </div>{" "}
+                          <div className="star-rating d-flex  ">
+                            <StarRating />{" "}
+                            <p className="mt-2 ms-3">
+                              {product.ratingsAverage}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -648,9 +601,6 @@ export default function Home(props) {
               </div>
             </div>
           )}
-          <div className=" view-all-details d-flex justify-content-center  ">
-            <button className="btn p-2">View All Products</button>
-          </div>
         </div>
         <div className="new-arrival-section my-5">
           <div className="d-flex">
@@ -778,6 +728,6 @@ export default function Home(props) {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

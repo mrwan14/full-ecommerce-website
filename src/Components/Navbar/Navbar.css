@@ -1,9 +1,10 @@
-form {
+.searchbar {
   width: 340px;
   height: 40px;
   padding: auto;
+  margin: 5px;
 }
-form ::placeholder {
+.searchbar::placeholder {
   /* Title/12PX Regular */
 
   font-family: "Poppins", "FontAwesome";
@@ -16,7 +17,6 @@ form ::placeholder {
   font-size: 30px;
   margin-left: 40px;
   margin-right: -50px;
-
   align-items: center;
   display: flex;
 }
@@ -27,15 +27,34 @@ form ::placeholder {
   width: 20px;
 }
 
-@media (min-width: 0px) and (max-width: 360px) {
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
 
-  form {
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+#lblCartCount {
+  font-size: 12px;
+  background: #d80d0d;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
+  margin-left: -10px;
+}
+
+@media (min-width: 0px) and (max-width: 360px) {
+  .searchbar {
     width: 170px;
     height: 40px;
     margin-right: 90px;
-    
   }
-  form ::placeholder {
+  .searchbar ::placeholder {
     font-size: 10px;
   }
   .icons {
@@ -48,7 +67,7 @@ form ::placeholder {
   }
 }
 @media (min-width: 361px) and (max-width: 576px) {
-  form {
+  .searchbar {
     width: 200px;
     height: 40px;
     padding: auto;
@@ -62,7 +81,7 @@ form ::placeholder {
   }
 }
 @media (min-width: 576px) and (max-width: 768px) {
-  form {
+  .searchbar {
     width: 200px;
     height: 40px;
     padding: auto;

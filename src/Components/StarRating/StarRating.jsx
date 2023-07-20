@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./StarRating.css";
+import { ProductContext } from "../Context/ProductContext";
+import { process } from "@progress/kendo-data-query";
 export default function StarRating() {
-  const [rating, setRating] = useState(0);
+  let { Products } = useContext(ProductContext);
+  const [rating, setRating] = useState(4);
   const [hover, setHover] = useState(0);
   return (
     <div className="star-rating">

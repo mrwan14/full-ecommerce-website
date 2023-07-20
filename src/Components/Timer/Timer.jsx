@@ -7,7 +7,7 @@ export default function Timer() {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
-  const deadline = "May, 31, 2023";
+  const deadline = "May, 31, 2024";
 
   const getTime = () => {
     const time = Date.parse(deadline) - Date.now();
