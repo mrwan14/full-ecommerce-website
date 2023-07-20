@@ -4,6 +4,7 @@
   padding: auto;
   margin: 5px;
 }
+
 .searchbar::placeholder {
   /* Title/12PX Regular */
 
@@ -57,6 +58,11 @@
     height: 40px;
     margin-right: 90px;
   }
+  .fix-button-position {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
   .searchbar ::placeholder {
     font-size: 10px;
   }
@@ -70,6 +76,11 @@
   }
 }
 @media (min-width: 361px) and (max-width: 576px) {
+  .fix-button-position {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
   .searchbar {
     width: 200px;
     height: 40px;
@@ -89,6 +100,11 @@
     height: 40px;
     padding: auto;
     margin-right: 20px;
+  }
+  .fix-button-position {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
   .icons {
     margin-right: 10px;

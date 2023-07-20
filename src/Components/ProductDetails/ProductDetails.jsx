@@ -15,7 +15,7 @@ export default function ProductDetails() {
           <div className="row ">
             <div className="col-md-2">
               <div>
-                {ProductDetails.images?.map((product) => (
+                {ProductDetails.images.map((product) => (
                   <div className=" my-2">
                     {" "}
                     <img

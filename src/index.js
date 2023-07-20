@@ -9,17 +9,14 @@ import jQuery from "jquery";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import DataContextProvider from "./Components/Context/DataContext";
 import { ProductContextProvider } from "./Components/Context/ProductContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <DataContextProvider>
-      <ProductContextProvider>
-        <App />
-      </ProductContextProvider>
-    </DataContextProvider>
+    <ProductContextProvider>
+      <App />
+    </ProductContextProvider>
   </React.StrictMode>
 );
 

@@ -12,10 +12,14 @@ export default function Navbar() {
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light bg-white  border-bottom  mt-2  ">
-        <div className="container">
-          <div>
-            <Link to={"/"} class="navbar-brand">
-              Exclusvie
+        <div className="container  ">
+          <div className="fix-button-position">
+            <Link
+              to={"/"}
+              class="navbar-brand"
+              className=" fw-bolder text-black"
+            >
+              OnlineShopping
             </Link>{" "}
             <button
               class="navbar-toggler"
@@ -26,12 +30,12 @@ export default function Navbar() {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon "> </span>
             </button>
           </div>
           <div>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-              <ul class="navbar-nav  mb-2 mb-lg-0">
+              <ul class="navbar-nav   mb-2 mb-lg-0">
                 <li class="nav-item me-2 ">
                   <Link to={"/"} class="nav-link active" aria-current="page">
                     Home
