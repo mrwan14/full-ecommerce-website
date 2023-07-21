@@ -26,7 +26,9 @@ function Cart() {
         </div>
 
         {Cart.length === 0 ? (
-          <div><h2 className=" fw-bold">Your Cart Is Empty</h2></div>
+          <div>
+            <h2 className=" fw-bold">Your Cart Is Empty</h2>
+          </div>
         ) : (
           <div>
             <div className="product-titles">
@@ -98,9 +100,16 @@ function Cart() {
               <p>Return To Shop</p>
             </button>
           </Link>
-          <button className="btn btn-white" onClick={clearUserCart}>
-            <p>Clear Cart</p>
-          </button>
+          {Cart.length > 0 ? (
+            <>
+              {" "}
+              <button className="btn btn-white" onClick={clearUserCart}>
+                <p>Clear Cart</p>
+              </button>
+            </>
+          ) : (
+            ""
+          )}
         </div>
         <div className="row my-5">
           <div className="col-md-6 coupon d-flex  justify-content-between">
@@ -112,7 +121,7 @@ function Cart() {
                 aria-label="Search"
               />
             </form>
-            <button className="btn Apply-Coupon">
+            <button className="btn Apply-Coupon ">
               <p>Apply Coupon</p>
             </button>
           </div>

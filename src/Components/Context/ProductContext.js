@@ -101,7 +101,7 @@ export function ProductContextProvider(props) {
       }
     );
 
-    getUserCart();
+    await getUserCart();
 
     if (product.count < 1) {
       deleteSpesificProductFromCart(product);
@@ -123,7 +123,6 @@ export function ProductContextProvider(props) {
   }
 
   async function getProductDetails(product) {
-    
     let { data } = await axios.get(`${BaseUrl}/api/v1/products/${product._id}`);
     console.log(data.data);
     setProductDetails(data.data);
@@ -156,7 +155,7 @@ export function ProductContextProvider(props) {
         clearUserCart,
         CartDetails,
         getProductDetails,
-        ProductDetails
+        ProductDetails,
       }}
     >
       {Products === [] || categories === [] || Brands === [] ? (

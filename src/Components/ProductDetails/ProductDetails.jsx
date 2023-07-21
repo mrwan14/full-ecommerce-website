@@ -13,43 +13,48 @@ export default function ProductDetails() {
       {ProductDetails ? (
         <div>
           <div className="row ">
-            <div className="col-md-2">
-              <div>
-                {ProductDetails.images.map((product) => (
-                  <div className=" my-2">
-                    {" "}
-                    <img
-                      src={product}
-                      alt=""
-                      className="w-50 "
-                      onMouseEnter={() => {
-                        setIsHovering(true);
-                        setHoveringImg(product);
-                      }}
-                    />
+            <div className="col-md-5 ">
+              <div className="row">
+                <div className="col-md-4">
+                  <div>
+                    {ProductDetails.images.map((product) => (
+                      <div className=" my-2">
+                        {" "}
+                        <img
+                          src={product}
+                          alt=""
+                          className="w-50 "
+                          onMouseEnter={() => {
+                            setIsHovering(true);
+                            setHoveringImg(product);
+                          }}
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+
+                <div className="col-md-8">
+                  {isHovering === true ? (
+                    <div>
+                      {" "}
+                      <img src={HoveringImg} alt="" className=" w-100" />
+                    </div>
+                  ) : (
+                    <div>
+                      {" "}
+                      <img
+                        src={ProductDetails.imageCover}
+                        alt=""
+                        className=" w-100"
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
-            <div className="col-md-5">
-              {isHovering === true ? (
-                <div>
-                  {" "}
-                  <img src={HoveringImg} alt="" className=" w-100" />
-                </div>
-              ) : (
-                <div>
-                  {" "}
-                  <img
-                    src={ProductDetails.imageCover}
-                    alt=""
-                    className=" w-100"
-                  />
-                </div>
-              )}
-            </div>
-            <div className="col-md-5 align-items-center justify-content-center d-flex ">
+            <div className="col-md-7  align-items-center justify-content-center d-flex ">
               <div>
                 <div className="d-flex justify-content-between">
                   <h3> {ProductDetails.title}</h3>

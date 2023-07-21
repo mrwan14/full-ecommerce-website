@@ -1,5 +1,5 @@
 .dropdown-menu {
-  margin-top: 210px;
+  margin-top: 29px;
   margin-left: -200px;
   background-color: rgba(0, 0, 0, 0.5);
 }
@@ -12,7 +12,7 @@
 .open {
   background-color: red;
   border-radius: 50%;
-  height: 30px;
+  height: 39px;
 }
 .dropdown-icon {
   margin-left: 7px;

@@ -77,3 +77,20 @@
   border: 1.5px solid #000000;
   border-radius: 4px;
 }
+
+@media (min-width: 0px) and (max-width: 360px) {
+  .product-titles {
+    display: none;
+  }
+}
+@media (min-width: 361px) and (max-width: 573px) {
+  .product-titles {
+    display: none;
+  }
+}
+
+@media (min-width: 770px) and (max-width: 1000px) {
+  .product-titles {
+    display: none;
+  }
+}
