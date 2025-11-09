@@ -2,7 +2,7 @@
   height: 48px;
   display: flex;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
 }
 p {
   font-size: 14px;

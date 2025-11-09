@@ -1,20 +1,16 @@
 import React, { useContext, useMemo, useCallback } from "react";
-import { AiOutlineRight } from "react-icons/ai";
 import { BsApple } from "react-icons/bs";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { AiOutlineHeart } from "react-icons/ai";
-import { AiOutlineEye } from "react-icons/ai";
 import { BsHeadset } from "react-icons/bs";
 import { BsShieldCheck } from "react-icons/bs";
 import "./Home.css";
 import Timer from "../Timer/Timer";
-import StarRating from "../StarRating/StarRating";
 import ProductCard from "../ProductCard/ProductCard";
 import { ProductContext } from "../Context/ProductContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Home(props) {
   const navigate = useNavigate();

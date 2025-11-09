@@ -105,7 +105,7 @@ export default function Login() {
                   <div className="d-flex my-5 justify-content-start  ">
                     <button type="submit" className="btn login-btn   ">
                       <p className="">
-                        {Loading == true ? (
+                        {Loading === true ? (
                           <div className="fa fa-spin fa-spinner me-3"></div>
                         ) : (
                           "log in"

@@ -20,8 +20,8 @@
   background-color: rgba(219, 68, 68, 1);
   margin-right: 70px;
   display: flex;
-  justify-content: end;
-  align-items: start;
+  justify-content: flex-end;
+  align-items: flex-start;
 }
 .login .login-btn p {
   font-size: 16px;

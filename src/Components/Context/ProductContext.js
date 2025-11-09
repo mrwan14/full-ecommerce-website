@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState, useMemo, useCallback } from "react";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export let ProductContext = createContext(0);

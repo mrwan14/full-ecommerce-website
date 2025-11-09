@@ -18,6 +18,7 @@ export default function ProductDetails() {
         getProductDetails(product);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, Products]);
   return (
     <div className=" container mt-5">
