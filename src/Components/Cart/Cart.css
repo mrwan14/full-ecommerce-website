@@ -53,7 +53,6 @@
   border: rgba(0, 0, 0, 1) 1px solid;
   height: 56px;
   width: 300px;
-
   border-radius: 4px;
 }
 .Apply-Coupon {
@@ -78,19 +77,67 @@
   border-radius: 4px;
 }
 
-@media (min-width: 0px) and (max-width: 360px) {
+/* Mobile Responsive Styles */
+@media (max-width: 767.98px) {
   .product-titles {
     display: none;
   }
-}
-@media (min-width: 361px) and (max-width: 573px) {
-  .product-titles {
-    display: none;
+  
+  .product-info {
+    padding: 15px;
+  }
+  
+  .product-info .img img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+  }
+  
+  .product-info h6 {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .quantity {
+    width: 60px;
+    height: 40px;
+  }
+  
+  .cart-btn {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .cart-btn .btn-white {
+    width: 100%;
+  }
+  
+  .coupon .email-input input {
+    width: 100%;
+  }
+  
+  .Apply-Coupon {
+    width: 100%;
+    margin-right: 0;
+  }
+  
+  .checkout-btn {
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .cart-total {
+    margin-top: 20px;
   }
 }
 
-@media (min-width: 770px) and (max-width: 1000px) {
+@media (min-width: 768px) and (max-width: 991.98px) {
   .product-titles {
     display: none;
+  }
+  
+  .checkout-btn {
+    margin-left: 0;
+    width: 100%;
   }
 }

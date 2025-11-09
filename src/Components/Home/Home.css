@@ -1,12 +1,45 @@
 .brdr {
   height: 40px;
   width: 20px;
-
   border-radius: 4px;
   background-color: tomato;
 }
 .timer {
   margin-top: -10px;
+}
+
+.product-image-wrapper {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.view-product-icon {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background-color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.view-product-icon:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateX(-50%) scale(1.1);
+}
+
+.view-eye-icon {
+  font-size: 20px;
+  color: #000;
 }
 
 .img-container {
@@ -98,276 +131,140 @@
   color: black;
   text-align: center;
   margin-right: 10px;
-}
-.circle p {
-  font-size: 10px;
-}
-.Buy-Now {
-  margin-top: 30px;
-  background-color: rgba(0, 255, 102, 1);
-  border: 0;
-  border-radius: 4px;
-  margin-bottom: 50px;
-}
-.Buy-Now:hover {
-  background-color: rgba(219, 68, 68, 1);
-  color: white;
-}
-.new-product {
-  width: 50px;
-  height: 25px;
-  border-radius: 4px;
-  margin-left: -24px;
-  margin-top: -26px;
-  background-color: rgba(0, 255, 102, 1);
-  color: white;
-}
-
-/* The container */
-.ratio {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* Hide the browser's default radio button */
-.ratio input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-/* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #ff0d0d;
-  border-radius: 50%;
-}
-
-/* On mouse-over, add a grey background color */
-.ratio:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the radio button is checked, add a blue background */
-.ratio input:checked ~ .checkmark {
-  border: black 3px solid;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.ratio input:checked ~ .checkmark:after {
-  display: block;
-}
-
-.women-desc {
-  top: 130px;
-  left: 24px;
-}
-.speaker-desc {
-  bottom: 20px;
-  left: 24px;
-}
-.speaker-img {
-  height: 280px;
-}
-.service-icon {
-  height: 80px;
-  width: 80px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #d9d9d9;
-  margin: auto;
-  margin-bottom: 20px;
-  margin-top: 30px;
-}
-.for-icon {
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgb(0, 0, 0);
 }
 
-@media (min-width: 0px) and (max-width: 360px) {
-  .product-container {
-    display: grid;
-    grid-template-columns: 40% 60%;
-    grid-gap: 24px;
-  }
-  .img-container img {
-    width: 80%;
-    position: relative;
-  }
-  .right-icons {
-    margin-right: 50px;
-    margin-top: 10px;
-  }
+.date {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.ps5-ad {
+  padding: 30px;
+  margin: 10px;
+}
+.ps5-ad img {
+  width: 78%;
+}
+.music-ad {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+}
 
-  .menu {
+/* Mobile Responsive Styles */
+@media (max-width: 575.98px) {
+  .product-container {
+    margin-bottom: 20px;
+  }
+  
+  .view-product-icon {
+    width: 35px;
+    height: 35px;
+    top: -12px;
+  }
+  
+  .view-eye-icon {
+    font-size: 18px;
+  }
+  
+  .img-container {
+    height: 250px;
+  }
+  
+  .img-container img {
+    width: 90%;
+  }
+  
+  .right-icons {
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+  
+  .mins {
+    margin-left: -10px;
     font-size: 12px;
   }
-
-  .brdr {
-    height: 40px;
-    width: 20px;
+  
+  .product-desc h5 {
+    font-size: 14px;
   }
+  
+  .product-desc .price p {
+    font-size: 14px;
+  }
+  
+  .view-all-details button {
+    width: 100%;
+  }
+  
+  .timer {
+    margin-top: 0;
+    margin-left: 0;
+  }
+  
   .flash-sales {
     font-size: 18px;
   }
-
-  .timer {
-    margin-left: -12px;
-  }
-
+  
   .ad-desc {
-    margin-top: 69px;
-    margin-left: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
   }
+  
   .ad-desc h1 {
-    font-size: 18px;
+    font-size: 20px;
   }
+  
   .circle {
-    width: 45px;
-    height: 45px;
-    position: relative;
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
   }
-
-  .date {
-    position: absolute;
-    top: 20px;
-    left: 10px;
-  }
+  
   .ps5-ad {
-    padding: 30px;
-    margin: 10px;
+    padding: 15px;
+    margin: 5px;
   }
+  
   .ps5-ad img {
-    width: 78%;
+    width: 100%;
   }
-}
-@media (min-width: 361px) and (max-width: 573px) {
-  .product-container {
-    display: grid;
-    grid-template-columns: 60% 40%;
-    grid-gap: 24px;
-  }
-  .img-container img {
-    width: 90%;
-    position: relative;
-  }
-  .right-icons {
-    margin-right: 50px;
-    margin-top: 10px;
-  }
-
-  .slider {
-    margin-left: -10px;
-  }
-
-  .ad-desc {
-    margin-top: 69px;
-    margin-left: 20px;
-  }
-  .ad-desc h1 {
-    font-size: 18px;
-  }
-  .circle {
-    width: 45px;
-    height: 45px;
-    position: relative;
-  }
-
-  .date {
-    position: absolute;
-    top: 20px;
-    left: 10px;
-  }
-  .ps5-ad {
+  
+  .music-ad {
+    flex-direction: column;
     padding: 20px;
-    margin: 10px;
   }
 }
-@media (min-width: 573px) and (max-width: 768px) {
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .img-container {
+    height: 280px;
+  }
+  
   .right-icons {
-    margin-right: 50px;
-    margin-top: 10px;
+    margin-right: 20px;
   }
-  .container {
-    width: 768px;
-  }
-  .slider {
-    margin-left: -10px;
-  }
-
+  
   .ad-desc {
-    margin-top: 69px;
-    margin-left: 20px;
+    margin-top: 40px;
   }
-  .ad-desc h1 {
-    font-size: 18px;
-  }
+  
   .circle {
-    width: 45px;
-    height: 45px;
-    position: relative;
-  }
-
-  .date {
-    position: absolute;
-    top: 20px;
-    left: 10px;
-  }
-  .ps5-ad {
-    padding: 20px;
-    margin: 10px;
+    width: 50px;
+    height: 50px;
   }
 }
 
-@media (min-width: 770px) and (max-width: 1000px) {
-  .carousel-inner {
-    margin-top: 70px;
-  }
-
+@media (min-width: 768px) and (max-width: 991.98px) {
   .ad-desc {
-    margin-top: 69px;
-    margin-left: 20px;
+    margin-top: 50px;
   }
-  .ad-desc h1 {
-    font-size: 18px;
-  }
-  .circle {
-    width: 45px;
-    height: 45px;
-    position: relative;
-  }
-
-  .date {
-    position: absolute;
-    top: 20px;
-    left: 10px;
-  }
+  
   .new-arrival-section img {
     width: 80%;
   }

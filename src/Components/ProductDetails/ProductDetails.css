@@ -1,4 +1,29 @@
-.star-color
-{
-    color: rgb(255, 255, 0);
+.star-color {
+  color: rgb(255, 255, 0);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 767.98px) {
+  .product-details-container {
+    padding: 10px;
+  }
+  
+  .product-details-container h3 {
+    font-size: 18px;
+    word-wrap: break-word;
+  }
+  
+  .product-details-container .text-muted {
+    font-size: 14px;
+  }
+  
+  .product-details-container .btn {
+    width: 100%;
+    margin-top: 15px;
+  }
+  
+  .product-details-container img {
+    max-width: 100%;
+    height: auto;
+  }
 }

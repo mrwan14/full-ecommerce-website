@@ -19,55 +19,57 @@ const ProductCard = memo(({
   onAddToWishlist, 
   onViewDetails,
   showAddToCart = true,
-  className = "col-md-4 col-lg-3 col-sm-6"
+  className = "col-12 col-sm-6 col-md-4 col-lg-3"
 }) => {
   const isLoggedIn = !!localStorage.getItem("userToken");
 
   return (
     <div className={className}>
       <div className="product-container">
-        <div className="img-container">
-          <img 
-            src={product.imageCover} 
-            alt={product.title || "Product image"}
-            loading="lazy"
-          />
-          <div className="icons d-flex justify-content-between">
-            <div className="mins">
-              <p>20%</p>
+        <div className="product-image-wrapper position-relative">
+          <Link
+            to={ROUTES.PRODUCT_DETAILS(product._id)}
+            className="view-product-icon"
+            onClick={(e) => {
+              e.stopPropagation();
+              onViewDetails && onViewDetails(product);
+            }}
+            aria-label={`View ${product.title} details`}
+          >
+            <AiOutlineEye className="view-eye-icon" />
+          </Link>
+          <div className="img-container">
+            <img 
+              src={product.imageCover} 
+              alt={product.title || "Product image"}
+              loading="lazy"
+            />
+            <div className="icons d-flex justify-content-between">
+              <div className="mins">
+                <p>20%</p>
+              </div>
+              <div className="right-icons">
+                <button
+                  className="d-block border-0 bg-transparent"
+                  onClick={() => onAddToWishlist && onAddToWishlist(product)}
+                  aria-label="Add to wishlist"
+                >
+                  <AiOutlineHeart className="d-block mb-1 rounded-circle bg-white" />
+                </button>
+              </div>
             </div>
-            <div className="right-icons">
-              <button
-                className="d-block"
-                onClick={() => onAddToWishlist && onAddToWishlist(product)}
-                aria-label="Add to wishlist"
-              >
-                <AiOutlineHeart className="d-block mb-1 rounded-circle bg-white" />
-              </button>
-              <Link
-                to={ROUTES.PRODUCT_DETAILS(product._id)}
-                className="text-black"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onViewDetails && onViewDetails(product);
-                }}
-                aria-label={`View ${product.title} details`}
-              >
-                <AiOutlineEye className="d-block mb-1 bg-white rounded-circle" />
-              </Link>
-            </div>
+            {isLoggedIn && showAddToCart && (
+              <div className="add-to-cart">
+                <button
+                  className="text-white fs-6 border-0 bg-transparent w-100"
+                  onClick={() => onAddToCart && onAddToCart(product)}
+                  aria-label={`Add ${product.title} to cart`}
+                >
+                  Add To Cart
+                </button>
+              </div>
+            )}
           </div>
-          {isLoggedIn && showAddToCart && (
-            <div className="add-to-cart">
-              <button
-                className="text-white fs-6"
-                onClick={() => onAddToCart && onAddToCart(product)}
-                aria-label={`Add ${product.title} to cart`}
-              >
-                Add To Cart
-              </button>
-            </div>
-          )}
         </div>
         <div className="product-desc m-3">
           <h5 className="text-success fs-6">{product.category?.name}</h5>

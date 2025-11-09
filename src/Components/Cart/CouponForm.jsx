@@ -48,10 +48,10 @@ const CouponForm = ({ CartDetails }) => {
   };
 
   return (
-    <div className="coupon d-flex justify-content-between w-100">
-      <form className="email-input flex-grow-1 me-3" onSubmit={handleSubmit}>
+    <div className="coupon d-flex flex-column flex-md-row justify-content-between w-100 gap-2">
+      <form className="email-input flex-grow-1" onSubmit={handleSubmit}>
         <input
-          className="form-control bg-white fontAwesome"
+          className="form-control bg-white fontAwesome w-100"
           type="text"
           placeholder="Coupon Code"
           value={couponCode}
@@ -67,10 +67,10 @@ const CouponForm = ({ CartDetails }) => {
         disabled={loading || !!appliedCoupon}
         aria-label="Apply Coupon"
       >
-        <p>{loading ? "Applying..." : appliedCoupon ? "Applied" : "Apply Coupon"}</p>
+        <p className="mb-0">{loading ? "Applying..." : appliedCoupon ? "Applied" : "Apply Coupon"}</p>
       </button>
       {appliedCoupon && (
-        <div className="ms-2 text-success">
+        <div className="text-success text-center text-md-start">
           <small>Discount: {appliedCoupon.discount}%</small>
         </div>
       )}

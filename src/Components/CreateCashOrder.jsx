@@ -77,12 +77,12 @@ export default function CreateCashOrder() {
     });
 
   return (
-    <div className=" container">
+    <div className="container">
       <div className="row">
-        <div className="col-md-4">
+        <div className="col-12 col-md-4 mb-4 mb-md-0">
           <form onSubmit={handleSubmit} action="">
-            <div className="form mt-5 ">
-              <h5 className="text-danger ms-1">Shipping Address </h5>
+            <div className="form mt-5">
+              <h5 className="text-danger ms-1">Shipping Address</h5>
               <input
                 type="text"
                 placeholder="Shipping Details"
@@ -141,17 +141,20 @@ export default function CreateCashOrder() {
             </div>
           </form>
         </div>
-        <div className="col-md-6   offset-2  mt-5">
+        <div className="col-12 col-md-6 offset-md-2 mt-5 mt-md-0">
           <div>
             {cartProducts && cartProducts.length > 0 ? cartProducts.map((product) => (
-              <div key={product.product._id || product.product.id || product._id}>
-                {" "}
-                <div className="row mt-2">
-                  <div className=" col-md-3 img">
-                    <img src={product.product.imageCover} alt="" />
+              <div key={product.product._id || product.product.id || product._id} className="mb-3 p-3 border rounded">
+                <div className="row align-items-center">
+                  <div className="col-4 col-md-3">
+                    <img src={product.product.imageCover} alt={product.product.title} className="img-fluid w-100" />
                   </div>
-                  <div className="col-md-7">{product.product.title}</div>
-                  <div className="col-md-1">${product.price}</div>
+                  <div className="col-5 col-md-7">
+                    <h6 className="mb-0 small">{product.product.title}</h6>
+                  </div>
+                  <div className="col-3 col-md-2 text-end">
+                    <strong>${product.price}</strong>
+                  </div>
                 </div>
               </div>
             )) : (
@@ -160,24 +163,24 @@ export default function CreateCashOrder() {
               </div>
             )}
             {CartDetails?.data && (
-              <div className="mt-5">
-                <div className="d-flex justify-content-between">
-                  <h6>SubTotal :</h6>
-                  <h6>${CartDetails.data.totalCartPrice || 0}</h6>
+              <div className="mt-5 p-3 border rounded">
+                <div className="d-flex justify-content-between mb-2">
+                  <h6 className="mb-0">SubTotal:</h6>
+                  <h6 className="mb-0">${CartDetails.data.totalCartPrice || 0}</h6>
                 </div>
                 <div className="d-flex justify-content-between my-3">
-                  <h6>Shipping :</h6>
-                  <h6>0</h6>
+                  <h6 className="mb-0">Shipping:</h6>
+                  <h6 className="mb-0">$0</h6>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <h6>Total :</h6>
-                  <h6>${CartDetails.data.totalCartPrice || 0}</h6>
+                  <h6 className="mb-0 fw-bold">Total:</h6>
+                  <h6 className="mb-0 fw-bold">${CartDetails.data.totalCartPrice || 0}</h6>
                 </div>
               </div>
             )}
-            <div className="mt-3">
+            <div className="mt-4">
               <h6 className="mb-3">Payment Method</h6>
-              <div className="form-check">
+              <div className="form-check mb-2">
                 <input
                   className="form-check-input"
                   type="radio"

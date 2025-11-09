@@ -163,7 +163,7 @@ export default function Home(props) {
                 {" "}
                 <div className="row">
                   {categories.map((catogry) => (
-                    <div key={catogry._id || catogry.id} className="col-md-4  col-lg-3 col-sm-6  ">
+                    <div key={catogry._id || catogry.id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                       <div
                         className="catogry-container"
                         onClick={() => {
@@ -217,7 +217,7 @@ export default function Home(props) {
                 <div className="row mt-5">
                   {Brands.map((product) => (
                     <React.Fragment key={product._id || product.id}>
-                      <div className="col-md-4  col-lg-3 col-sm-6">
+                      <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                         <div className="product-container ">
                           {" "}
                           <div className={``}>

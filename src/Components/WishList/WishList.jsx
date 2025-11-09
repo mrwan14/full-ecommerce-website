@@ -13,22 +13,18 @@ export default function WishList() {
       <div className="WishList-page">
         <div className="container">
           <div className="WishList">
-            <div className="d-flex justify-content-between my-5">
-              <h3>
+            <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center my-5">
+              <h3 className="mb-3 mb-md-0">
                 WishList
                 {WishList == null ? (
-                  <>
-                    <>(0)</>
-                  </>
+                  <> (0)</>
                 ) : (
-                  <>
-                    <>({WishList.length} )</>
-                  </>
+                  <> ({WishList.length})</>
                 )}
               </h3>
 
               <button 
-                className="btn text-black border border-black p-2 h-25  fw-bolder"
+                className="btn text-black border border-black p-2 fw-bolder"
                 onClick={() => {
                   if (WishList && WishList.length > 0) {
                     WishList.forEach(product => {
@@ -50,7 +46,7 @@ export default function WishList() {
                 <div className="row mt-5">
                   {WishList.map((product) => (
                     <React.Fragment key={product.id || product._id}>
-                      <div className="col-md-3">
+                      <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                         <div className="product-container">
                           <div className={"img-container"}>
                             <img src={product.imageCover} alt="" />
@@ -118,7 +114,7 @@ export default function WishList() {
               <div className="row mt-5">
                 {Products.map((product) => (
                   <React.Fragment key={product._id || product.id}>
-                    <div className="col-md-3">
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                       <div className="product-container">
                         <div className={`img-container`}>
                           <div className="icons d-flex justify-content-between">
