@@ -26,38 +26,37 @@ const ProductCard = memo(({
   return (
     <div className={className}>
       <div className="product-container">
-        <div className="product-image-wrapper position-relative">
-          <Link
-            to={ROUTES.PRODUCT_DETAILS(product._id)}
-            className="view-product-icon"
-            onClick={(e) => {
-              e.stopPropagation();
-              onViewDetails && onViewDetails(product);
-            }}
-            aria-label={`View ${product.title} details`}
-          >
-            <AiOutlineEye className="view-eye-icon" />
-          </Link>
-          <div className="img-container">
-            <img 
-              src={product.imageCover} 
-              alt={product.title || "Product image"}
-              loading="lazy"
-            />
-            <div className="icons d-flex justify-content-between">
-              <div className="mins">
-                <p>20%</p>
-              </div>
-              <div className="right-icons">
-                <button
-                  className="d-block border-0 bg-transparent"
-                  onClick={() => onAddToWishlist && onAddToWishlist(product)}
-                  aria-label="Add to wishlist"
-                >
-                  <AiOutlineHeart className="d-block mb-1 rounded-circle bg-white" />
-                </button>
-              </div>
+        <div className="img-container">
+          <img 
+            src={product.imageCover} 
+            alt={product.title || "Product image"}
+            loading="lazy"
+          />
+          <div className="icons d-flex justify-content-between">
+            <div className="mins">
+              <p>20%</p>
             </div>
+            <div className="right-icons d-flex gap-2">
+              <Link
+                to={ROUTES.PRODUCT_DETAILS(product._id)}
+                className="d-block border-0 bg-transparent text-decoration-none"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onViewDetails && onViewDetails(product);
+                }}
+                aria-label={`View ${product.title} details`}
+              >
+                <AiOutlineEye className="d-block mb-1 rounded-circle bg-white p-1" />
+              </Link>
+              <button
+                className="d-block border-0 bg-transparent"
+                onClick={() => onAddToWishlist && onAddToWishlist(product)}
+                aria-label="Add to wishlist"
+              >
+                <AiOutlineHeart className="d-block mb-1 rounded-circle bg-white" />
+              </button>
+            </div>
+          </div>
             {isLoggedIn && showAddToCart && (
               <div className="add-to-cart">
                 <button
@@ -69,7 +68,6 @@ const ProductCard = memo(({
                 </button>
               </div>
             )}
-          </div>
         </div>
         <div className="product-desc m-3">
           <h5 className="text-success fs-6">{product.category?.name}</h5>
