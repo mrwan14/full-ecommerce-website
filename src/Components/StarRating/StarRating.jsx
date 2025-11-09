@@ -1,11 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./StarRating.css";
-import { ProductContext } from "../Context/ProductContext";
-import { process } from "@progress/kendo-data-query";
-export default function StarRating() {
-  let { Products } = useContext(ProductContext);
-  const [rating, setRating] = useState(4);
+
+export default function StarRating({ rating: initialRating = 4, onRatingChange, readOnly = false }) {
+  const [rating, setRating] = useState(initialRating);
   const [hover, setHover] = useState(0);
+  
+  const handleClick = (index) => {
+    if (!readOnly) {
+      setRating(index);
+      if (onRatingChange) {
+        onRatingChange(index);
+      }
+    }
+  };
   return (
     <div className="star-rating">
       {[...Array(5)].map((star, index) => {
@@ -15,9 +22,10 @@ export default function StarRating() {
             type="button"
             key={index}
             className={index <= (hover || rating) ? "on" : "off"}
-            onClick={() => setRating(index)}
-            onMouseEnter={() => setHover(index)}
-            onMouseLeave={() => setHover(rating)}
+            onClick={() => handleClick(index)}
+            onMouseEnter={() => !readOnly && setHover(index)}
+            onMouseLeave={() => !readOnly && setHover(rating)}
+            disabled={readOnly}
           >
             <span className="star">&#9733; </span>
           </button>

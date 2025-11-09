@@ -1,3 +1,4 @@
+import React, { Suspense, lazy } from "react";
 import {
   createBrowserRouter,
   Navigate,
@@ -5,18 +6,34 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import Routing from "./Components/Routing/Routing";
-import Home from "./Components/Home/Home";
-import SignUp from "./Components/SignUp/SignUp";
-import Login from "./Components/Login/Login";
-import WishList from "./Components/WishList/WishList";
-import Cart from "./Components/Cart/Cart";
-import ForgetPassword from "./Components/VerifyPassword/ForgetPassword";
-import VerifyResetPassword from "./Components/VerifyPassword/VerifyResetPassword";
-import UpdateUserPassword from "./Components/VerifyPassword/UpdateUserPassword";
-import ResetPassword from "./Components/VerifyPassword/ResetPassword";
-import UpdateUserData from "./Components/VerifyPassword/UpdateUserData";
-import CreateCashOrder from "./Components/CreateCashOrder";
-import ProductDetails from "./Components/ProductDetails/ProductDetails";
+import ErrorBoundary from "./Components/ErrorBoundary/ErrorBoundary";
+import { ProductListSkeleton } from "./Components/Skeleton/SkeletonLoader";
+
+// Lazy load components for code splitting
+const Home = lazy(() => import("./Components/Home/Home"));
+const SignUp = lazy(() => import("./Components/SignUp/SignUp"));
+const Login = lazy(() => import("./Components/Login/Login"));
+const WishList = lazy(() => import("./Components/WishList/WishList"));
+const Cart = lazy(() => import("./Components/Cart/Cart"));
+const ForgetPassword = lazy(() => import("./Components/VerifyPassword/ForgetPassword"));
+const VerifyResetPassword = lazy(() => import("./Components/VerifyPassword/VerifyResetPassword"));
+const UpdateUserPassword = lazy(() => import("./Components/VerifyPassword/UpdateUserPassword"));
+const ResetPassword = lazy(() => import("./Components/VerifyPassword/ResetPassword"));
+const UpdateUserData = lazy(() => import("./Components/VerifyPassword/UpdateUserData"));
+const CreateCashOrder = lazy(() => import("./Components/CreateCashOrder"));
+const ProductDetails = lazy(() => import("./Components/ProductDetails/ProductDetails"));
+const Contact = lazy(() => import("./Components/Contact/Contact"));
+const About = lazy(() => import("./Components/About/About"));
+const ManageAccount = lazy(() => import("./Components/ManageAccount/ManageAccount"));
+
+// Loading fallback component
+const LoadingFallback = () => (
+  <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "50vh" }}>
+    <div className="spinner-border text-primary" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </div>
+  </div>
+);
 
 function ProtectedRouts(props) {
   if (localStorage.getItem("userToken") === null) {
@@ -33,22 +50,110 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <Suspense fallback={<ProductListSkeleton />}>
+            <Home />
+          </Suspense>
+        ),
       },
-      { path: "signup", element: <SignUp /> },
-      { path: "login", element: <Login />, children: [] },
-      { path: "forgetPassword", element: <ForgetPassword /> },
-      { path: "verifyResetPassword", element: <VerifyResetPassword /> },
-      { path: "updateUserPassword", element: <UpdateUserPassword /> },
-      { path: "resetPassword", element: <ResetPassword /> },
-      { path: "updateUserData", element: <UpdateUserData /> },
-      { path: "productDetails", element: <ProductDetails /> },
+      { 
+        path: "signup", 
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <SignUp />
+          </Suspense>
+        ) 
+      },
+      { 
+        path: "login", 
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Login />
+          </Suspense>
+        ), 
+        children: [] 
+      },
+      { 
+        path: "forgetPassword", 
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <ForgetPassword />
+          </Suspense>
+        ) 
+      },
+      { 
+        path: "verifyResetPassword", 
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <VerifyResetPassword />
+          </Suspense>
+        ) 
+      },
+      { 
+        path: "updateUserPassword", 
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <UpdateUserPassword />
+          </Suspense>
+        ) 
+      },
+      { 
+        path: "resetPassword", 
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <ResetPassword />
+          </Suspense>
+        ) 
+      },
+      { 
+        path: "updateUserData", 
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <UpdateUserData />
+          </Suspense>
+        ) 
+      },
+      { 
+        path: "productDetails/:id?", 
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <ProductDetails />
+          </Suspense>
+        ) 
+      },
+      { 
+        path: "contact", 
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Contact />
+          </Suspense>
+        ) 
+      },
+      { 
+        path: "about", 
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <About />
+          </Suspense>
+        ) 
+      },
+      {
+        path: "manageaccount",
+        element: (
+          <ProtectedRouts>
+            <Suspense fallback={<LoadingFallback />}>
+              <ManageAccount />
+            </Suspense>
+          </ProtectedRouts>
+        ),
+      },
       {
         path: "wishlist",
         element: (
           <ProtectedRouts>
-            {" "}
-            <WishList />
+            <Suspense fallback={<LoadingFallback />}>
+              <WishList />
+            </Suspense>
           </ProtectedRouts>
         ),
       },
@@ -56,7 +161,9 @@ const router = createBrowserRouter([
         path: "cart",
         element: (
           <ProtectedRouts>
-            <Cart />
+            <Suspense fallback={<LoadingFallback />}>
+              <Cart />
+            </Suspense>
           </ProtectedRouts>
         ),
       },
@@ -64,7 +171,9 @@ const router = createBrowserRouter([
         path: "createCashOrder",
         element: (
           <ProtectedRouts>
-            <CreateCashOrder />
+            <Suspense fallback={<LoadingFallback />}>
+              <CreateCashOrder />
+            </Suspense>
           </ProtectedRouts>
         ),
       },
@@ -73,7 +182,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ErrorBoundary>
+      <RouterProvider router={router} />
+    </ErrorBoundary>
+  );
 }
 
 export default App;

@@ -8,7 +8,7 @@ export default function TopHeader() {
         <div className="container  d-flex justify-content-center align-items-center ">
           <p>
             Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!{" "}
-            <a href="" className="ms-1 text-white ">
+            <a href="/" className="ms-1 text-white ">
               ShopNow
             </a>
           </p>

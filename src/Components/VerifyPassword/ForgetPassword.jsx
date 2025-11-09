@@ -37,7 +37,7 @@ export default function ForgetPassword() {
           </div>
         </div>
         <div className="col-md-6     d-flex  align-items-center flex-column justify-content-center">
-          <form>
+          <form onSubmit={handleSubmit}>
             <h5 className="text-danger">Reset Password</h5>
             <input
               type="text"
@@ -51,7 +51,6 @@ export default function ForgetPassword() {
             <button
               type="submit"
               className=" btn  btn-danger  d-block mt-3 ms-1"
-              onClick={handleSubmit}
             >
               reset{" "}
             </button>

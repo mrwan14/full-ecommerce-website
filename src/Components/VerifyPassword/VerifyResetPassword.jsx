@@ -35,7 +35,7 @@ export default function VerifyResetPassword() {
         </div>
       </div>
       <div className="col-md-6     d-flex  align-items-center flex-column justify-content-center">
-        <form>
+        <form onSubmit={handleSubmit}>
           <h6 className="text-danger">Check Your Email Box</h6>
           <input
             type="text"
@@ -49,7 +49,6 @@ export default function VerifyResetPassword() {
           <button
             type="submit"
             className=" btn  btn-danger  d-block mt-3 ms-1"
-            onClick={handleSubmit}
           >
             Verify
           </button>

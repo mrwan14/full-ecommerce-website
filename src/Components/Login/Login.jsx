@@ -25,30 +25,29 @@ export default function Login() {
       }),
       onSubmit: async (values, action) => {
         setLoading(true);
-        await fetch("https://route-ecommerce.onrender.com/api/v1/auth/signin", {
-          method: "POST",
-          body: JSON.stringify(values),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            // Handle data
-
-            if (data.message === "success") {
-              notify(data.message);
-              localStorage.setItem("userToken", data.token);
-              navigate("/");
-            } else {
-              notify("invalid ");
-              setLoading(false);
-            }
-          })
-          .catch((err) => {
-            console.log(err.message);
+        try {
+          const response = await fetch("https://ecommerce.routemisr.com/api/v1/auth/signin", {
+            method: "POST",
+            body: JSON.stringify(values),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
           });
+          const data = await response.json();
+
+          if (data.message === "success") {
+            notify(data.message);
+            localStorage.setItem("userToken", data.token);
+            navigate("/");
+          } else {
+            notify(data.message || "Invalid credentials");
+            setLoading(false);
+          }
+        } catch (err) {
+          console.error("Login error:", err);
+          notify("Network error. Please try again.");
+          setLoading(false);
+        }
       },
     });
 
@@ -61,20 +60,24 @@ export default function Login() {
               <img src={require("../../images/signUp.png")} alt="" />
             </div>
           </div>
-          <div className="col-md-6  text-center">
+          <div className="col-md-6 d-flex justify-content-center align-items-center  ">
             {" "}
-            <div className="text  ">
-              <div className="title">
-                <h2 className="me-3">Log in to Exclusive</h2>
-                <p className="me-3">Enter your details below</p>
+            <div>
+              <div className="title ">
+                <h2>Login to Exclusive</h2>
+                <p>Enter your details below</p>
               </div>
-
-              <form onSubmit={handleSubmit} action="">
-                <div className="form mt-5 ">
+              <form
+                onSubmit={handleSubmit}
+                action=""
+                className=" d-flex justify-content-center align-items-center mt-5"
+              >
+                <div>
+                  {" "}
                   <input
                     type="text"
                     placeholder="Email or Phone Number"
-                    className=" form-control "
+                    className=" form-control   "
                     name="email"
                     onChange={handleChange}
                     value={values.email}

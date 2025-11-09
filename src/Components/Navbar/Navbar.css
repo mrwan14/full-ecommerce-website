@@ -110,3 +110,20 @@
     margin-right: 10px;
   }
 }
+@media (min-width: 576px) and (max-width: 1200px){
+  .searchbar-fix-bosition {
+    background-color: rgb(0, 0, 0);
+  }
+  .searchbar-fix-position .icons .icon {
+    margin-bottom: -50px;
+  }
+  #lblCartCount {
+    font-size: 12px;
+    background: #d80d0d;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top: -45px;
+  }
+}

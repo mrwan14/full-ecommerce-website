@@ -1,13 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./ProductDetails.css";
 import { ProductContext } from "../Context/ProductContext";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiFillStar } from "react-icons/ai";
 export default function ProductDetails() {
-  let { ProductDetails, addToWishList, addProductToCart } =
+  const { id } = useParams();
+  let { ProductDetails, addToWishList, addProductToCart, Products, getProductDetails } =
     useContext(ProductContext);
   const [isHovering, setIsHovering] = useState(false);
   const [HoveringImg, setHoveringImg] = useState("");
+
+  useEffect(() => {
+    if (id && Products.length > 0) {
+      const product = Products.find(p => p._id === id);
+      if (product) {
+        getProductDetails(product);
+      }
+    }
+  }, [id, Products]);
   return (
     <div className=" container mt-5">
       {ProductDetails ? (
@@ -17,16 +28,16 @@ export default function ProductDetails() {
               <div className="row">
                 <div className="col-md-4">
                   <div>
-                    {ProductDetails.images.map((product) => (
-                      <div className=" my-2">
+                    {ProductDetails.images?.map((image, index) => (
+                      <div key={index} className=" my-2">
                         {" "}
                         <img
-                          src={product}
+                          src={image}
                           alt=""
                           className="w-50 "
                           onMouseEnter={() => {
                             setIsHovering(true);
-                            setHoveringImg(product);
+                            setHoveringImg(image);
                           }}
                         />
                       </div>
@@ -69,11 +80,7 @@ export default function ProductDetails() {
                 <p className=" text-muted"> {ProductDetails.description}</p>
                 <div className=" d-flex justify-content-between">
                   {" "}
-                  <h6 className="text-danger">
-                    {ProductDetails.category.name} |{" "}
-                    {ProductDetails.subcategory[0].name}
-                  </h6>
-                  <h6>{ProductDetails.brand.name}</h6>
+                
                 </div>
                 <div className=" d-flex justify-content-between">
                   {" "}
@@ -98,8 +105,13 @@ export default function ProductDetails() {
           </div>
         </div>
       ) : (
-        <div>
-          <img src="https://loading.io/asset/676515" alt="" />
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "50vh" }}>
+          <div>
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <p className="mt-3">Loading product details...</p>
+          </div>
         </div>
       )}
     </div>

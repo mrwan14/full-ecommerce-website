@@ -16,16 +16,21 @@ export default function ResetPassword() {
       },
 
       onSubmit: async (values, action) => {
-        let { data } = await axios.put(
-          `https://ecommerce.routemisr.com/api/v1/auth/resetPassword`,
-          values
-        );
-        if (data.token) {
-          notify("The Password Changed Succeffully");
-          localStorage.setItem("userToken", data.token);
-          setTimeout(() => {
-            navigate("/");
-          }, 2000);
+        try {
+          let { data } = await axios.put(
+            `https://ecommerce.routemisr.com/api/v1/auth/resetPassword`,
+            values
+          );
+          if (data.token) {
+            notify("The Password Changed Successfully");
+            localStorage.setItem("userToken", data.token);
+            setTimeout(() => {
+              navigate("/");
+            }, 2000);
+          }
+        } catch (error) {
+          console.error("Error resetting password:", error);
+          notify(error.response?.data?.message || "Failed to reset password");
         }
       },
     });
@@ -38,8 +43,8 @@ export default function ResetPassword() {
           </div>
         </div>
         <div className="col-md-6     d-flex  align-items-center flex-column justify-content-center">
-          <form>
-            <h6 className="text-danger">Update Passwprd</h6>
+          <form onSubmit={handleSubmit}>
+            <h6 className="text-danger">Update Password</h6>
             <input
               type="email"
               placeholder="Enter Your Email"
@@ -71,7 +76,6 @@ export default function ResetPassword() {
             <button
               type="submit"
               className=" btn  btn-danger  d-block mt-3 ms-1"
-              onClick={handleSubmit}
             >
               Update{" "}
             </button>

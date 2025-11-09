@@ -7,9 +7,7 @@ import { ProductContext } from "../Context/ProductContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function WishList() {
-  let { Products } = useContext(ProductContext);
-
-  let { WishList, removeFromWishList } = useContext(ProductContext);
+  let { Products, WishList, removeFromWishList, addProductToCart } = useContext(ProductContext);
   return (
     <React.Fragment>
       <div className="WishList-page">
@@ -29,7 +27,16 @@ export default function WishList() {
                 )}
               </h3>
 
-              <button className="btn text-black border border-black p-2 h-25  fw-bolder   ">
+              <button 
+                className="btn text-black border border-black p-2 h-25  fw-bolder"
+                onClick={() => {
+                  if (WishList && WishList.length > 0) {
+                    WishList.forEach(product => {
+                      addProductToCart(product);
+                    });
+                  }
+                }}
+              >
                 Move All To Bag
               </button>
             </div>
@@ -42,7 +49,7 @@ export default function WishList() {
                 {" "}
                 <div className="row mt-5">
                   {WishList.map((product) => (
-                    <>
+                    <React.Fragment key={product.id || product._id}>
                       <div className="col-md-3">
                         <div className="product-container">
                           <div className={"img-container"}>
@@ -56,7 +63,15 @@ export default function WishList() {
                               <RiDeleteBin6Line className=" fs-4 mt-2" />
                             </div>
 
-                            <div className="add-to-cart">Add To Cart</div>
+                            <div 
+                              className="add-to-cart"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                addProductToCart(product);
+                              }}
+                            >
+                              Add To Cart
+                            </div>
                           </div>
                           <div className="product-desc m-3">
                             <h5>{product.title}</h5>
@@ -71,7 +86,7 @@ export default function WishList() {
                           </div>
                         </div>
                       </div>
-                    </>
+                    </React.Fragment>
                   ))}
                 </div>
               </div>
@@ -87,7 +102,12 @@ export default function WishList() {
                   </h6>
                 </div>
                 <div>
-                  <button className="btn btn-danger view-all-btn ">
+                  <button 
+                    className="btn btn-danger view-all-btn "
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
                     View All
                   </button>
                 </div>
@@ -97,7 +117,7 @@ export default function WishList() {
             <div>
               <div className="row mt-5">
                 {Products.map((product) => (
-                  <>
+                  <React.Fragment key={product._id || product.id}>
                     <div className="col-md-3">
                       <div className="product-container">
                         <div className={`img-container`}>
@@ -121,7 +141,7 @@ export default function WishList() {
                             </p>
                           </div>
                           <div className="star-rating d-flex  ">
-                            <StarRating />
+                            <StarRating rating={product.ratingsAverage || 0} readOnly={true} />
                             <p className="mt-2 ms-3">
                               {product.ratingsAverage}
                             </p>
@@ -129,7 +149,7 @@ export default function WishList() {
                         </div>
                       </div>
                     </div>
-                  </>
+                  </React.Fragment>
                 ))}
               </div>
             </div>

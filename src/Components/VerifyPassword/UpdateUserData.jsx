@@ -49,8 +49,8 @@ export default function UpdateUserData() {
         </div>
       </div>
       <div className="col-md-6     d-flex  align-items-center flex-column justify-content-center">
-        <form>
-          <h6 className="text-danger">Change Your Password</h6>
+        <form onSubmit={handleSubmit}>
+          <h6 className="text-danger">Update User Data</h6>
           <input
             type="text"
             placeholder="Update Your Name"
@@ -81,7 +81,6 @@ export default function UpdateUserData() {
           <button
             type="submit"
             className=" btn  btn-danger  d-block mt-3 ms-1"
-            onClick={handleSubmit}
           >
             {loading === true ? (
               <div className="fa fa-spin fa-spinner me-3"></div>

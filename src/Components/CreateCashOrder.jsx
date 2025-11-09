@@ -1,21 +1,42 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { ProductContext } from "./Context/ProductContext";
+import { API_BASE_URL } from "../config/api";
+import { PAYMENT_METHODS, VALIDATION } from "../constants";
+
 export default function CreateCashOrder() {
   const [Loading, setLoading] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState(PAYMENT_METHODS.CASH);
 
   const notify = (paramter) => toast(paramter);
   let navigate = useNavigate();
 
   let { CartDetails } = useContext(ProductContext);
-  const [cartProducts, serCartProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
   useEffect(() => {
-    serCartProducts(CartDetails.data.products);
-  }, []);
+    if (CartDetails?.data?.products) {
+      setCartProducts(CartDetails.data.products);
+    }
+  }, [CartDetails]);
+
+  const validationSchema = Yup.object({
+    details: Yup.string()
+      .min(10, "Shipping details must be at least 10 characters")
+      .required("Shipping details are required"),
+    phone: Yup.string()
+      .min(VALIDATION.PHONE_MIN_LENGTH, `Phone must be at least ${VALIDATION.PHONE_MIN_LENGTH} digits`)
+      .max(VALIDATION.PHONE_MAX_LENGTH, `Phone must be at most ${VALIDATION.PHONE_MAX_LENGTH} digits`)
+      .matches(/^[0-9]+$/, "Phone must contain only numbers")
+      .required("Phone number is required"),
+    city: Yup.string()
+      .min(2, "City name must be at least 2 characters")
+      .required("City is required"),
+  });
 
   const { handleBlur, handleChange, handleSubmit, values, touched, errors } =
     useFormik({
@@ -24,19 +45,33 @@ export default function CreateCashOrder() {
         phone: "",
         city: "",
       },
-
+      validationSchema,
       onSubmit: async (values, action) => {
+        if (!CartDetails?.data?._id) {
+          notify("Cart is empty");
+          return;
+        }
+        
         setLoading(true);
-        let { data } = await axios.post(
-          `https://route-ecommerce.onrender.com/api/v1/orders/${CartDetails.data._id}`,
-          { shippingAddress: values },
-          { headers: { token: localStorage.getItem("userToken") } }
-        );
-        if (data.status === "success") {
-          notify(data.status);
-          setTimeout(() => {
-            navigate("/");
-          }, 2000);
+        try {
+          let { data } = await axios.post(
+            `${API_BASE_URL}/api/v1/orders/${CartDetails.data._id}`,
+            { 
+              shippingAddress: values,
+              paymentMethod: paymentMethod,
+            },
+            { headers: { token: localStorage.getItem("userToken") } }
+          );
+          if (data.status === "success") {
+            notify("Order placed successfully");
+            setTimeout(() => {
+              navigate("/");
+            }, 2000);
+          }
+        } catch (error) {
+          console.error("Error creating order:", error);
+          notify(error.response?.data?.message || "Failed to create order");
+          setLoading(false);
         }
       },
     });
@@ -51,36 +86,56 @@ export default function CreateCashOrder() {
               <input
                 type="text"
                 placeholder="Shipping Details"
-                className=" form-control "
+                className={`form-control ${touched.details && errors.details ? "is-invalid" : ""}`}
                 name="details"
                 onChange={handleChange}
                 value={values.details}
                 onBlur={handleBlur}
+                aria-label="Shipping Details"
+                aria-required="true"
               />
+              {touched.details && errors.details && (
+                <div className="invalid-feedback d-block">{errors.details}</div>
+              )}
 
               <input
-                type="text"
+                type="tel"
                 placeholder="Phone"
-                className=" form-control "
+                className={`form-control mt-3 ${touched.phone && errors.phone ? "is-invalid" : ""}`}
                 name="phone"
                 onChange={handleChange}
                 value={values.phone}
                 onBlur={handleBlur}
+                aria-label="Phone Number"
+                aria-required="true"
               />
+              {touched.phone && errors.phone && (
+                <div className="invalid-feedback d-block">{errors.phone}</div>
+              )}
 
               <input
                 type="text"
                 placeholder="City"
-                className="form-control"
+                className={`form-control mt-3 ${touched.city && errors.city ? "is-invalid" : ""}`}
                 name="city"
                 onChange={handleChange}
                 value={values.city}
                 onBlur={handleBlur}
+                aria-label="City"
+                aria-required="true"
               />
+              {touched.city && errors.city && (
+                <div className="invalid-feedback d-block">{errors.city}</div>
+              )}
 
               <div className=" my-5   ">
-                <button type="submit" className=" btn btn-danger  ms-1  ">
-                  Place Order
+                <button 
+                  type="submit" 
+                  className=" btn btn-danger  ms-1"
+                  disabled={Loading}
+                  aria-label="Place Order"
+                >
+                  {Loading ? "Placing Order..." : "Place Order"}
                 </button>
               </div>
             </div>
@@ -88,8 +143,8 @@ export default function CreateCashOrder() {
         </div>
         <div className="col-md-6   offset-2  mt-5">
           <div>
-            {cartProducts.map((product) => (
-              <div>
+            {cartProducts && cartProducts.length > 0 ? cartProducts.map((product) => (
+              <div key={product.product._id || product.product.id || product._id}>
                 {" "}
                 <div className="row mt-2">
                   <div className=" col-md-3 img">
@@ -99,45 +154,57 @@ export default function CreateCashOrder() {
                   <div className="col-md-1">${product.price}</div>
                 </div>
               </div>
-            ))}
-            <div className="mt-5">
-              <div className="d-flex justify-content-between">
-                <h6>SubTotal :</h6>
-                <h6>${CartDetails.data.totalCartPrice}</h6>
+            )) : (
+              <div className="text-center my-5">
+                <p>No items in cart</p>
               </div>
-              <div className="d-flex justify-content-between my-3">
-                <h6>Shipping :</h6>
-                <h6>0</h6>
+            )}
+            {CartDetails?.data && (
+              <div className="mt-5">
+                <div className="d-flex justify-content-between">
+                  <h6>SubTotal :</h6>
+                  <h6>${CartDetails.data.totalCartPrice || 0}</h6>
+                </div>
+                <div className="d-flex justify-content-between my-3">
+                  <h6>Shipping :</h6>
+                  <h6>0</h6>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <h6>Total :</h6>
+                  <h6>${CartDetails.data.totalCartPrice || 0}</h6>
+                </div>
               </div>
-              <div className="d-flex justify-content-between">
-                <h6>Total :</h6>
-                <h6>${CartDetails.data.totalCartPrice}</h6>
-              </div>
-            </div>
+            )}
             <div className="mt-3">
-              {" "}
-              <div class="form-check">
+              <h6 className="mb-3">Payment Method</h6>
+              <div className="form-check">
                 <input
-                  class="form-check-input    "
+                  className="form-check-input"
                   type="radio"
-                  name="exampleRadios"
-                  id="Bank"
-                  value="Bank"
+                  name="paymentMethod"
+                  id="cash"
+                  value={PAYMENT_METHODS.CASH}
+                  checked={paymentMethod === PAYMENT_METHODS.CASH}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  aria-label="Cash on delivery"
                 />
-                <label class="form-check-label" for="Bank">
-                  Bank
+                <label className="form-check-label" htmlFor="cash">
+                  Cash on delivery
                 </label>
               </div>
-              <div class="form-check">
+              <div className="form-check">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
-                  name="exampleRadios"
-                  id="Cash-on-delivery"
-                  value="Cash-on-delivery"
+                  name="paymentMethod"
+                  id="bank"
+                  value={PAYMENT_METHODS.BANK}
+                  checked={paymentMethod === PAYMENT_METHODS.BANK}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  aria-label="Bank transfer"
                 />
-                <label class="form-check-label" for="Cash-on-delivery">
-                  Cash on delivery{" "}
+                <label className="form-check-label" htmlFor="bank">
+                  Bank Transfer
                 </label>
               </div>
             </div>

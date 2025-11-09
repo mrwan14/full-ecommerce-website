@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./dropdown.css";
 import { BiUser } from "react-icons/bi";
 import { FiShoppingBag } from "react-icons/fi";
@@ -7,15 +7,22 @@ import { BiLogOut } from "react-icons/bi";
 import { AiOutlineStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ProductContext } from "../Context/ProductContext";
 
 export default function Dropdown() {
   const [dropdown, setDropdown] = useState(false);
   const toggleOpen = () => setDropdown(!dropdown);
   const notify = (paramter) => toast(paramter);
+  const { clearUserData } = useContext(ProductContext);
 
   const logOut = () => {
     localStorage.removeItem("userToken");
+    clearUserData(); // Clear cart and wishlist state
     notify("Logged out");
+    // Reload page to clear all state
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1000);
   };
   return (
     <div className={`dropdown   btn-group ${dropdown ? "open" : ""}`}>

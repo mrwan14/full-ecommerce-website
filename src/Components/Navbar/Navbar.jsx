@@ -72,7 +72,7 @@ export default function Navbar() {
                   </>
                 )}
               </ul>
-              <div className=" d-flex">
+              <div className=" d-flex searchbar-fix-position align-items-center">
                 <form class="searchbar">
                   <input
                     class="form-control  bg-light fontAwesome "

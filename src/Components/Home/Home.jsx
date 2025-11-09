@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo, useCallback } from "react";
 import { AiOutlineRight } from "react-icons/ai";
 import { BsApple } from "react-icons/bs";
 import { AiOutlineArrowRight } from "react-icons/ai";
@@ -10,11 +10,14 @@ import { BsShieldCheck } from "react-icons/bs";
 import "./Home.css";
 import Timer from "../Timer/Timer";
 import StarRating from "../StarRating/StarRating";
+import ProductCard from "../ProductCard/ProductCard";
 import { ProductContext } from "../Context/ProductContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 export default function Home(props) {
+  const navigate = useNavigate();
   let {
     Products,
     categories,
@@ -24,6 +27,23 @@ export default function Home(props) {
     addProductToCart,
     getProductDetails,
   } = useContext(ProductContext);
+
+  // Memoize callbacks to prevent unnecessary re-renders
+  const handleAddToCart = useCallback((product) => {
+    addProductToCart(product);
+  }, [addProductToCart]);
+
+  const handleAddToWishlist = useCallback((product) => {
+    addToWishList(product);
+  }, [addToWishList]);
+
+  const handleViewDetails = useCallback((product) => {
+    getProductDetails(product);
+  }, [getProductDetails]);
+
+  // Memoize filtered products
+  const flashSalesProducts = useMemo(() => Products.slice(0, 10), [Products]);
+  const allProducts = useMemo(() => Products, [Products]);
   return (
     <>
       <div>
@@ -45,7 +65,10 @@ export default function Home(props) {
                       <h1 className="ms-5 mt-3">
                         Up to 10% <br /> off Voucher
                       </h1>
-                      <button className=" btn border-0 ms-5  bg-black text-white border-bottom ">
+                      <button 
+                        className=" btn border-0 ms-5  bg-black text-white border-bottom "
+                        onClick={() => navigate("/")}
+                      >
                         Shop Now <AiOutlineArrowRight />
                       </button>
                     </div>
@@ -83,84 +106,32 @@ export default function Home(props) {
                 <div>...Loading Data</div>
               ) : (
                 <div className="row ">
-                  {Products.slice(0, 10).map((product) => (
-                    <div className="col-md-4  col-lg-3 col-sm-6">
-                      <div
-                        className="product-container"
-                        onClick={() => {
-                          getProductDetails(product);
-                        }}
-                      >
-                        {" "}
-                        <div className={`img-container`}>
-                          <img src={product.imageCover} alt="" />
-                          <div className="icons d-flex justify-content-between">
-                            <div className=" mins">
-                              <p>20%</p>{" "}
-                            </div>{" "}
-                            <div className="right-icons">
-                              <button
-                                className=" d-block"
-                                onClick={() => addToWishList(product)}
-                              >
-                                {" "}
-                                <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
-                              </button>
-                              <Link
-                                to="/productDetails"
-                                className=" text-white"
-                              >
-                                <button>
-                                  {" "}
-                                  <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
-                                </button>
-                              </Link>
-                            </div>
-                          </div>{" "}
-                          {localStorage.getItem("userToken") ? (
-                            <div className="add-to-cart">
-                              <button
-                                className=" text-white fs-6"
-                                onClick={() => {
-                                  addProductToCart(product);
-                                }}
-                              >
-                                Add To Cart
-                              </button>
-                            </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="product-desc m-3">
-                          <h5 className=" text-success fs-6">
-                            {product.category.name}
-                          </h5>
-                          <h5>{product.title}</h5>
-                          <div className="price d-flex">
-                            <p className="text-danger me-3">
-                              ${product.price}{" "}
-                            </p>
-                            <p className="text-muted  text-decoration-line-through">
-                              ${product.price + 100}{" "}
-                            </p>
-                          </div>{" "}
-                          <div className="star-rating d-flex  ">
-                            <StarRating />{" "}
-                            <p className="mt-2 ms-3">
-                              {product.ratingsAverage}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  {flashSalesProducts.map((product) => (
+                    <ProductCard
+                      key={product._id || product.id}
+                      product={product}
+                      onAddToCart={handleAddToCart}
+                      onAddToWishlist={handleAddToWishlist}
+                      onViewDetails={handleViewDetails}
+                      showAddToCart={true}
+                    />
                   ))}
                 </div>
               )}
             </div>
           </div>
           <div className=" view-all-details d-flex justify-content-center  ">
-            <button className="btn p-2">View All Products</button>
+            <button 
+              className="btn p-2"
+              onClick={() => {
+                const element = document.getElementById('all-products');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              View All Products
+            </button>
           </div>
         </div>
         <div className="line my-5"></div>
@@ -192,7 +163,7 @@ export default function Home(props) {
                 {" "}
                 <div className="row">
                   {categories.map((catogry) => (
-                    <div className="col-md-4  col-lg-3 col-sm-6  ">
+                    <div key={catogry._id || catogry.id} className="col-md-4  col-lg-3 col-sm-6  ">
                       <div
                         className="catogry-container"
                         onClick={() => {
@@ -224,7 +195,17 @@ export default function Home(props) {
               <div className=" col-md-7 offset-1  d-flex justify-content-between">
                 <div></div>
                 <div className="d-flex ">
-                  <button className="btn btn-danger">View All</button>
+                  <button 
+                    className="btn btn-danger"
+                    onClick={() => {
+                      const element = document.getElementById('all-products');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                  >
+                    View All
+                  </button>
                 </div>
               </div>{" "}
             </div>
@@ -235,7 +216,7 @@ export default function Home(props) {
                 {" "}
                 <div className="row mt-5">
                   {Brands.map((product) => (
-                    <>
+                    <React.Fragment key={product._id || product.id}>
                       <div className="col-md-4  col-lg-3 col-sm-6">
                         <div className="product-container ">
                           {" "}
@@ -255,7 +236,7 @@ export default function Home(props) {
                           </div>
                         </div>
                       </div>
-                    </>
+                    </React.Fragment>
                   ))}
                 </div>
               </div>
@@ -299,7 +280,18 @@ export default function Home(props) {
               </div>
             </div>
             <div>
-              <button className="btn Buy-Now">Buy Now!</button>
+              <button 
+                className="btn Buy-Now"
+                onClick={() => {
+                  if (localStorage.getItem("userToken")) {
+                    navigate("/cart");
+                  } else {
+                    navigate("/login");
+                  }
+                }}
+              >
+                Buy Now!
+              </button>
             </div>
           </div>
           <div className="ad-img rounded-circle d-flex  align-items-center  justify-content-center">
@@ -311,7 +303,7 @@ export default function Home(props) {
             />
           </div>
         </div>
-        <div className="our-products-section my-5">
+        <div className="our-products-section my-5" id="all-products">
           <div className="d-flex">
             {" "}
             <div className="brdr"></div>
@@ -338,68 +330,15 @@ export default function Home(props) {
             <div>
               {" "}
               <div className="row mt-5">
-                {Products.map((product) => (
-                  <>
-                    <div className="col-md-4  col-lg-3 col-sm-6 ">
-                      <div className="product-container">
-                        <div className={`img-container`}>
-                          <img src={product.imageCover} alt="" />
-                          <div className="icons d-flex justify-content-between">
-                            <div className=" mins">
-                              <p>20%</p>{" "}
-                            </div>{" "}
-                            <div className="right-icons  ">
-                              <button
-                                className=" d-block"
-                                onClick={() => addToWishList(product)}
-                              >
-                                {" "}
-                                <AiOutlineHeart className=" d-block mb-1  rounded-circle bg-white" />
-                              </button>
-                              <button>
-                                {" "}
-                                <AiOutlineEye className=" d-block mb-1 bg-white rounded-circle" />
-                              </button>
-                            </div>
-                          </div>{" "}
-                          {localStorage.getItem("userToken") ? (
-                            <div className="add-to-cart">
-                              <button
-                                className=" text-white fs-6"
-                                onClick={() => {
-                                  addProductToCart(product);
-                                }}
-                              >
-                                Add To Cart
-                              </button>
-                            </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="product-desc m-3">
-                          <h5 className=" text-success fs-6">
-                            {product.category.name}
-                          </h5>
-                          <h5>{product.title}</h5>
-                          <div className="price d-flex">
-                            <p className="text-danger me-3">
-                              ${product.price}{" "}
-                            </p>
-                            <p className="text-muted  text-decoration-line-through">
-                              ${product.price + 100}{" "}
-                            </p>
-                          </div>{" "}
-                          <div className="star-rating d-flex  ">
-                            <StarRating />{" "}
-                            <p className="mt-2 ms-3">
-                              {product.ratingsAverage}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </>
+                {allProducts.map((product) => (
+                  <ProductCard
+                    key={product._id || product.id}
+                    product={product}
+                    onAddToCart={handleAddToCart}
+                    onAddToWishlist={handleAddToWishlist}
+                    onViewDetails={handleViewDetails}
+                    showAddToCart={true}
+                  />
                 ))}
               </div>
             </div>
@@ -428,7 +367,10 @@ export default function Home(props) {
                 <p className="fw-1">
                   Black and White version of the PS5 <br /> coming out on sale.
                 </p>
-                <button className=" btn border-0  bg-transparent text-white border-bottom  border-light">
+                <button 
+                  className=" btn border-0  bg-transparent text-white border-bottom  border-light"
+                  onClick={() => navigate("/")}
+                >
                   Shop Now
                 </button>
               </div>
@@ -437,12 +379,15 @@ export default function Home(props) {
               <div className="women bg-black d-flex text-white position-relative justify-content-between">
                 <div></div>
                 <div className="women-desc position-absolute  ">
-                  <h2>Women’s Collections</h2>
+                  <h2>Women's Collections</h2>
                   <p>
                     Featured woman collections that <br /> give you another
                     vibe.
                   </p>
-                  <button className=" btn border-0  bg-transparent text-white border-bottom  border-light">
+                  <button 
+                    className=" btn border-0  bg-transparent text-white border-bottom  border-light"
+                    onClick={() => navigate("/")}
+                  >
                     Shop Now
                   </button>
                 </div>
@@ -456,7 +401,10 @@ export default function Home(props) {
                     <div className="speaker-desc position-absolute text-white">
                       <h3 className="mb-0">Speakers</h3>
                       <p className="mb-0">Amazon wireless speakers</p>
-                      <button className=" btn border-0  bg-transparent text-white border-bottom  border-light">
+                      <button 
+                        className=" btn border-0  bg-transparent text-white border-bottom  border-light"
+                        onClick={() => navigate("/")}
+                      >
                         Shop Now
                       </button>
                     </div>
@@ -473,7 +421,10 @@ export default function Home(props) {
                     <div className="speaker-desc position-absolute text-white ">
                       <h3 className="mb-0">Perfume</h3>
                       <p className="mb-0">GUCCI INTENSE OUD EDP</p>
-                      <button className=" btn border-0  bg-transparent text-white border-bottom  border-light ">
+                      <button 
+                        className=" btn border-0  bg-transparent text-white border-bottom  border-light "
+                        onClick={() => navigate("/")}
+                      >
                         Shop Now
                       </button>
                     </div>
@@ -499,10 +450,10 @@ export default function Home(props) {
                   />
                 </div>
               </div>
-              <dov className="service-desc">
+              <div className="service-desc">
                 <h4 className="fw-bolder">FREE AND FAST DELIVERY</h4>
                 <p>Free delivery for all orders over $140</p>
-              </dov>
+              </div>
             </div>
             <div className="col-md-4 text-center mt-5">
               <div className="service-icon ">
@@ -511,10 +462,10 @@ export default function Home(props) {
                   <BsHeadset className="text-white fs-2" />
                 </div>
               </div>
-              <dov className="service-desc">
+              <div className="service-desc">
                 <h4 className="fw-bolder">24/7 CUSTOMER SERVICE</h4>
                 <p>Friendly 24/7 customer support</p>
-              </dov>
+              </div>
             </div>
             <div className="col-md-4 text-center mt-5">
               <div className="service-icon ">
@@ -523,10 +474,10 @@ export default function Home(props) {
                   <BsShieldCheck className="text-white fs-2" />
                 </div>
               </div>
-              <dov className="service-desc">
+              <div className="service-desc">
                 <h4 className="fw-bolder">MONEY BACK GUARANTEE</h4>
-                <p>We reurn money within 30 days</p>
-              </dov>
+                <p>We return money within 30 days</p>
+              </div>
             </div>
           </div>
         </div>

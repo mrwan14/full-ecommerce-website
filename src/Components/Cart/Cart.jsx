@@ -6,6 +6,7 @@ import "./Cart.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ProductContext } from "../Context/ProductContext";
+import CouponForm from "./CouponForm";
 function Cart() {
   let location = useLocation();
   let finalLocation = location.pathname.split(" /")[0];
@@ -48,7 +49,7 @@ function Cart() {
               </div>
             </div>
             {Cart.map((product) => (
-              <div className="product-info">
+              <div key={product.product._id || product.product.id || product._id} className="product-info">
                 <div className="row">
                   <div className="col-md-3 d-flex ">
                     <div className="img">
@@ -112,18 +113,8 @@ function Cart() {
           )}
         </div>
         <div className="row my-5">
-          <div className="col-md-6 coupon d-flex  justify-content-between">
-            <form class=" email-input">
-              <input
-                class="form-control bg-white fontAwesome "
-                type="search"
-                placeholder=" Coupon Code             "
-                aria-label="Search"
-              />
-            </form>
-            <button className="btn Apply-Coupon ">
-              <p>Apply Coupon</p>
-            </button>
+          <div className="col-md-6">
+            <CouponForm CartDetails={CartDetails} />
           </div>
           <div className="col-md-6 ">
             <div className="cart-total p-4">

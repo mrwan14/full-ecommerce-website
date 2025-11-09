@@ -17,7 +17,6 @@
   margin-left: 20px;
 }
 .form .form-control {
-  width: 300px;
   border: 0;
   border-bottom: 1px solid rgb(154, 148, 148);
   margin: auto 5px;
@@ -41,9 +40,7 @@
 .sign-up-img img {
   width: 100%;
 }
-.log-in {
-  margin-left: 50px;
-}
+
 
 input.input-error,
 select.input-error {
