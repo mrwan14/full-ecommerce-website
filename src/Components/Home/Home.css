@@ -14,7 +14,7 @@
   text-align: center;
   background-color: rgb(255, 255, 255);
   height: 300px;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
 }
 .img-container img {
@@ -30,20 +30,41 @@
   top: 0;
   right: 0;
   left: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.img-container .icons > * {
+  pointer-events: auto;
 }
 
 .mins {
-  width: 20%;
-  height: 25px;
+  width: 50px;
+  height: 30px;
   border-radius: 4px;
-  margin-left: -24px;
-  margin-top: -26px;
+  margin-left: 10px;
+  margin-top: 10px;
   background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 11;
+}
+
+.mins p {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
 }
 
 .right-icons {
   margin-right: 10px;
   margin-top: 10px;
+  position: relative;
+  z-index: 11;
 }
 
 .right-icons .rounded-circle {
@@ -155,6 +176,8 @@
 @media (max-width: 575.98px) {
   .product-container {
     margin-bottom: 20px;
+    position: relative;
+    overflow: visible;
   }
   
   .img-container {
@@ -171,7 +194,13 @@
   }
   
   .mins {
-    margin-left: -10px;
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 40px;
+    height: 25px;
+  }
+  
+  .mins p {
     font-size: 12px;
   }
   
